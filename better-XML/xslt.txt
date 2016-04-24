@@ -1,0 +1,12 @@
+    em.getTransaction().begin();
+    XSLTLibrarySection section = new XSLTLibrarySection(sectionName);
+    XSLTItem entry = new XSLTItem(sectionName, itemName);
+    entry.setXSLTLibrarySection(section);
+    entry.setXSLTLibraryPK(new XSLTItemPK(sectionName, itemName));
+    section.setXSLTLibraryList(new ArrayList<>());
+    section.getXSLTLibraryList().add(entry);
+    entry.setXSLT(xslt);
+    em.persist(section);
+    em.getTransaction().commit();
+    return entry;
+  }

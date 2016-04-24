@@ -1,0 +1,12 @@
+    em.getTransaction().begin();
+    XPathLibrarySection section = new XPathLibrarySection(sectionName);
+    XPathItem entry = new XPathItem(sectionName, itemName);
+    entry.setXPathLibrarySection(section);
+
+
+
+    entry.setXpath(xpathEntry);
+    em.persist(entry);
+    em.getTransaction().commit();
+    em.detach(entry);
+    return entry;

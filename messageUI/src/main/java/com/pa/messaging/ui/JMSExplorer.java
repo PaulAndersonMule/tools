@@ -277,8 +277,8 @@ public class JMSExplorer extends javax.swing.JFrame implements IMessageSink {
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel2Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, Short.MAX_VALUE)
-        .addContainerGap())
+        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel2Layout.setVerticalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,10 +363,10 @@ public class JMSExplorer extends javax.swing.JFrame implements IMessageSink {
           .addGroup(jPanel3Layout.createSequentialGroup()
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(txtConnectionName)
-              .addComponent(txtBrokerURL, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+              .addComponent(txtBrokerURL, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
               .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(46, Short.MAX_VALUE))))
+            .addContainerGap(53, Short.MAX_VALUE))))
     );
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +404,7 @@ public class JMSExplorer extends javax.swing.JFrame implements IMessageSink {
         .addContainerGap()
         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTabbedPane1)
+        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
         .addContainerGap())
     );
     jInternalFrame1Layout.setVerticalGroup(

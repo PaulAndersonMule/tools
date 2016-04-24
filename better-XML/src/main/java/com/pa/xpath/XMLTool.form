@@ -273,7 +273,7 @@
                         <Component class="javax.swing.JTree" name="jtreeSourceXML">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Courier New" size="14" style="0"/>
+                              <Font name="Courier New" size="14" style="1"/>
                             </Property>
                           </Properties>
                           <Events>
@@ -635,7 +635,7 @@
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Courier New" size="14" style="0"/>
+                                  <Font name="Courier New" size="14" style="1"/>
                                 </Property>
                                 <Property name="lineWrap" type="boolean" value="true"/>
                                 <Property name="rows" type="int" value="5"/>

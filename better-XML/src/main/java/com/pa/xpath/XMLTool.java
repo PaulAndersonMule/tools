@@ -84,13 +84,13 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 	public XMLTool() {
 		initComponents();
 
-		kit.setStyle(XMLStyleConstants.ELEMENT_NAME, new Color(0, 0, 255), Font.PLAIN);
-		kit.setStyle(XMLStyleConstants.ELEMENT_VALUE, new Color(0, 0, 0), Font.PLAIN);
-		kit.setStyle(XMLStyleConstants.ELEMENT_PREFIX, new Color(128, 0, 0), Font.PLAIN);
+		kit.setStyle(XMLStyleConstants.ELEMENT_NAME, new Color(0, 0, 255), Font.BOLD);
+		kit.setStyle(XMLStyleConstants.ELEMENT_VALUE, new Color(0, 0, 0), Font.BOLD);
+		kit.setStyle(XMLStyleConstants.ELEMENT_PREFIX, new Color(128, 0, 0), Font.BOLD);
 
-		kit.setStyle(XMLStyleConstants.ATTRIBUTE_NAME, new Color(255, 0, 0), Font.PLAIN);
-		kit.setStyle(XMLStyleConstants.ATTRIBUTE_VALUE, new Color(0, 0, 0), Font.PLAIN);
-		kit.setStyle(XMLStyleConstants.ATTRIBUTE_PREFIX, new Color(128, 0, 0), Font.PLAIN);
+		kit.setStyle(XMLStyleConstants.ATTRIBUTE_NAME, new Color(255, 0, 0), Font.BOLD);
+		kit.setStyle(XMLStyleConstants.ATTRIBUTE_VALUE, new Color(0, 0, 0), Font.BOLD);
+		kit.setStyle(XMLStyleConstants.ATTRIBUTE_PREFIX, new Color(128, 0, 0), Font.BOLD);
 
 		kit.setStyle(XMLStyleConstants.NAMESPACE_NAME, new Color(102, 102, 102), Font.PLAIN);
 		kit.setStyle(XMLStyleConstants.NAMESPACE_VALUE, new Color(0, 51, 51), Font.PLAIN);
@@ -366,7 +366,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 
     jSplitPane1.setDividerLocation(600);
 
-    jtreeSourceXML.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+    jtreeSourceXML.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
     jtreeSourceXML.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
       public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
         jtreeSourceXMLValueChanged(evt);
@@ -555,7 +555,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     jLabel1.setText("XPath");
 
     jeditorXPath.setColumns(20);
-    jeditorXPath.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+    jeditorXPath.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
     jeditorXPath.setLineWrap(true);
     jeditorXPath.setRows(5);
     jeditorXPath.setText("/");
@@ -1285,6 +1285,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		doXPath(jeditorXPathResults, jeditorXPath.getText());
 //    String xpresults = XMLHelper.getXPathResults(nsResImpl, xpath, fileContents);
 //    jeditorXPathResults.setText(xpresults);
+		jeditorXPathResults.setCaretPosition(0);
 	}
 
 	private void qik(Map<String, Object> arg) {
@@ -1679,13 +1680,13 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		xslt = selectedXSLTItem.getXSLT();
 		txtXSLTName.setText(selectedXSLTItem.getXSLTLibraryPK().getItemName());
 		jeditorXSLT.setText(xslt);
+		jeditorXSLT.setCaretPosition(0);
 //    if (fileContents == null || fileContents.trim().equals("")) {
 //      return;
 //    }
 		doXSLT();
+		jeditorTransformedXML.setCaretPosition(0);
 		buildSaveButtonText();
-
-		doXSLT();
   }//GEN-LAST:event_lstXSLTItemsValueChanged
 
   private void btnSaveXSLTEditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveXSLTEditsActionPerformed
@@ -2003,6 +2004,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 			prettyXML();
 			doXPath();
 			doXSLT();
+			jeditorPaneXMLText.setCaretPosition(0);
 		} catch (XPathExpressionException x) {
 			reportError(x.getMessage(), jtextConsole);
 		}
@@ -2017,6 +2019,8 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 			reportError(ex.getMessage(), jtextConsole);
 		}
 		jtreeSourceXML.setModel(h.getTreeModel());
+		TreePath p = new TreePath(jtreeSourceXML.getModel().getRoot());
+		jtreeSourceXML.scrollRowToVisible(0);
 	}
 
 	/**

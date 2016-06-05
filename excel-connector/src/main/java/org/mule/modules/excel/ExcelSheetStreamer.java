@@ -76,7 +76,7 @@ public abstract class ExcelSheetStreamer {
 
 		InputStream sheetInputStream = null;
 
-		sheetInputStream = getInputStreamForSheet(xssfReader, sheetName, sheetIndex, isBySheetIndex, excelFileStream);
+		sheetInputStream = getInputStreamForSheet( xssfReader,  sheetName,  sheetIndex,  isBySheetIndex) ;
 
 		if (sheetInputStream == null) {
 			throw new RuntimeException("sheet " + sheetName + " does not exist in the Excel file");
@@ -154,12 +154,12 @@ public abstract class ExcelSheetStreamer {
 		return parser;
 	}
 
-//	public static void main(String[] args) throws Exception {
-//		String loc = "/Users/paul.anderson/projects/archive/McDonalds/doc/MCD_Middleware_APIDev_ResourceList.xlsx";
-////		String loc = "/Users/paul.anderson/asd.xlsx";
-//		OutputStream os = new ByteArrayOutputStream();
+	public static void main(String[] args) throws Exception {
+		String loc = "/Users/paul.anderson/projects/archive/McDonalds/doc/MCD_Middleware_APIDev_ResourceList.xlsx";
+//		String loc = "/Users/paul.anderson/asd.xlsx";
+		OutputStream os = new ByteArrayOutputStream();
 //		ExcelSheetStreamer.processSheetByName("v1", new FileInputStream(new File(loc)), os);
-//		System.out.println(os.toString());
-////		ExcelSheetStreamer.processSheetBySheetIndex(1, new FileInputStream(new File(loc)), os);
-//	}
+    ExcelSheetStreamer.processSheetBySheetIndex(3, new FileInputStream(new File(loc)), os);
+		System.out.println(os.toString());
+	}
 }

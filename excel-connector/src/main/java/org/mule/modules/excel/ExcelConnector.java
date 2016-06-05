@@ -35,7 +35,7 @@ public class ExcelConnector{
       OutputStream bos = new ByteArrayOutputStream(512);
       
 			try {
-				ExcelRead2.processSheetByName("v1", payloadInputStream, bos);
+				ExcelSheetStreamer.processSheetByName("v1", payloadInputStream, bos);
 			} catch (Exception ex) {
 				throw new RuntimeException(ex);
 			}
@@ -48,7 +48,7 @@ public class ExcelConnector{
       
       ByteArrayOutputStream bos = new ByteArrayOutputStream(1024);
       
-      ExcelRead2.processSheetBySheetIndex(Integer.parseInt(sheetIndex), payloadInputStream, bos);
+      ExcelSheetStreamer.processSheetBySheetIndex(Integer.parseInt(sheetIndex), payloadInputStream, bos);
       return bos; 
     }
 
@@ -59,21 +59,4 @@ public class ExcelConnector{
     public void setConfig(ConnectorConfig config) {
         this.config = config;
     }
-
-		private class DataStreamback implements IRowDataSink{
-
-		private OutputStream os;
-		private DataStreamback(){}
-		
-		public DataStreamback(OutputStream stream){
-			os = stream;
-		}
-		
-		@Override
-		public void rowDataCallback(String rowAsCSV) {
-			throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-		}
-			
-		}
-
 }

@@ -1,3 +1,0 @@
-<!-- BEGIN_INCLUDE(excel:greet) -->
-    <excel:greet config-ref="" friend="#[map-payload:friend]" />
-<!-- END_INCLUDE(excel:greet) -->

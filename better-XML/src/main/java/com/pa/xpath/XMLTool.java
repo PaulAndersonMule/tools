@@ -262,7 +262,12 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     btnLoadXSLT = new javax.swing.JButton();
     btnInsertNamespaces = new javax.swing.JButton();
     btnFormatXSLT = new javax.swing.JButton();
-    jInternalFrame1 = new javax.swing.JInternalFrame();
+    jiframeConsole = new javax.swing.JInternalFrame();
+    jScrollPane13 = new javax.swing.JScrollPane();
+    jtextConsole = new javax.swing.JEditorPane();
+    btnClearConsole = new javax.swing.JButton();
+    MainTools = new javax.swing.JInternalFrame();
+    jTabbedPane2 = new javax.swing.JTabbedPane();
     jPanel9 = new javax.swing.JPanel();
     jPanelSelectedItemDetails = new javax.swing.JPanel();
     jLabel5 = new javax.swing.JLabel();
@@ -284,11 +289,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     jScrollPane6 = new javax.swing.JScrollPane();
     lstXPaths = new javax.swing.JList();
     btnDeleteXPathItem = new javax.swing.JButton();
-    jiframeConsole = new javax.swing.JInternalFrame();
-    jScrollPane13 = new javax.swing.JScrollPane();
-    jtextConsole = new javax.swing.JEditorPane();
-    btnClearConsole = new javax.swing.JButton();
-    jInternalFrame2 = new javax.swing.JInternalFrame();
+    jPanel11 = new javax.swing.JPanel();
     jPanel4 = new javax.swing.JPanel();
     jLabel7 = new javax.swing.JLabel();
     jScrollPane12 = new javax.swing.JScrollPane();
@@ -364,7 +365,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     jframeSourceXML.setTitle("source XML");
     jframeSourceXML.setVisible(true);
 
-    jSplitPane1.setDividerLocation(600);
+    jSplitPane1.setDividerLocation(400);
 
     jtreeSourceXML.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
     jtreeSourceXML.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
@@ -433,7 +434,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
       jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel6Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(txtTreeSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+        .addComponent(txtTreeSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(btnTreeSearch)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -512,7 +513,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
           .addComponent(cbRealtimeXML)
           .addComponent(btnCleanNamespaces))
         .addGap(6, 6, 6)
-        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
         .addGap(3, 3, 3))
     );
 
@@ -534,7 +535,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     );
 
     desktopPane.add(jframeSourceXML);
-    jframeSourceXML.setBounds(0, 0, 910, 600);
+    jframeSourceXML.setBounds(0, 0, 770, 580);
 
     jframeXPath.setIconifiable(true);
     jframeXPath.setMaximizable(true);
@@ -596,7 +597,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
             .addComponent(jLabel1))
           .addComponent(btnXPath))
         .addGap(10, 10, 10)
-        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
         .addContainerGap())
     );
     jPanel1Layout.setVerticalGroup(
@@ -682,7 +683,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
         .addComponent(btnFormatXSLT, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(btnInsertNamespaces, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
         .addComponent(jLabel11)
         .addContainerGap())
       .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -698,7 +699,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
           .addComponent(btnInsertNamespaces)
           .addComponent(btnFormatXSLT))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+        .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -720,11 +721,49 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     );
 
     desktopPane.add(jframeXPath);
-    jframeXPath.setBounds(900, 10, 620, 420);
+    jframeXPath.setBounds(760, 0, 800, 480);
 
-    jInternalFrame1.setMaximizable(true);
-    jInternalFrame1.setTitle("XPath 3.0 library");
-    jInternalFrame1.setVisible(true);
+    jiframeConsole.setIconifiable(true);
+    jiframeConsole.setMaximizable(true);
+    jiframeConsole.setResizable(true);
+    jiframeConsole.setTitle("console");
+    jiframeConsole.setVisible(true);
+
+    jtextConsole.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+    jtextConsole.setForeground(new java.awt.Color(255, 51, 51));
+    jScrollPane13.setViewportView(jtextConsole);
+
+    btnClearConsole.setText("clear");
+    btnClearConsole.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnClearConsoleActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout jiframeConsoleLayout = new javax.swing.GroupLayout(jiframeConsole.getContentPane());
+    jiframeConsole.getContentPane().setLayout(jiframeConsoleLayout);
+    jiframeConsoleLayout.setHorizontalGroup(
+      jiframeConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
+      .addGroup(jiframeConsoleLayout.createSequentialGroup()
+        .addGap(6, 6, 6)
+        .addComponent(btnClearConsole)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jiframeConsoleLayout.setVerticalGroup(
+      jiframeConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jiframeConsoleLayout.createSequentialGroup()
+        .addGap(6, 6, 6)
+        .addComponent(btnClearConsole)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    desktopPane.add(jiframeConsole);
+    jiframeConsole.setBounds(0, 770, 760, 150);
+
+    MainTools.setVisible(true);
 
     jPanelSelectedItemDetails.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -788,7 +827,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
               .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtXPathName, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                .addComponent(txtXPathName))
               .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -909,7 +948,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
         .addGap(6, 6, 6)
         .addComponent(jLabel3)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(btnDeleteXPathItem)
         .addContainerGap())
@@ -938,62 +977,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
           .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
     );
 
-    javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-    jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-    jInternalFrame1Layout.setHorizontalGroup(
-      jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-    );
-    jInternalFrame1Layout.setVerticalGroup(
-      jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-    );
-
-    desktopPane.add(jInternalFrame1);
-    jInternalFrame1.setBounds(0, 610, 720, 250);
-
-    jiframeConsole.setIconifiable(true);
-    jiframeConsole.setMaximizable(true);
-    jiframeConsole.setResizable(true);
-    jiframeConsole.setTitle("console");
-    jiframeConsole.setVisible(true);
-
-    jtextConsole.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-    jtextConsole.setForeground(new java.awt.Color(255, 51, 51));
-    jScrollPane13.setViewportView(jtextConsole);
-
-    btnClearConsole.setText("clear");
-    btnClearConsole.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnClearConsoleActionPerformed(evt);
-      }
-    });
-
-    javax.swing.GroupLayout jiframeConsoleLayout = new javax.swing.GroupLayout(jiframeConsole.getContentPane());
-    jiframeConsole.getContentPane().setLayout(jiframeConsoleLayout);
-    jiframeConsoleLayout.setHorizontalGroup(
-      jiframeConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
-      .addGroup(jiframeConsoleLayout.createSequentialGroup()
-        .addGap(6, 6, 6)
-        .addComponent(btnClearConsole)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    jiframeConsoleLayout.setVerticalGroup(
-      jiframeConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jiframeConsoleLayout.createSequentialGroup()
-        .addGap(6, 6, 6)
-        .addComponent(btnClearConsole)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    desktopPane.add(jiframeConsole);
-    jiframeConsole.setBounds(640, 860, 760, 150);
-
-    jInternalFrame2.setTitle("XSLT 3.0 library");
-    jInternalFrame2.setVisible(true);
+    jTabbedPane2.addTab("XPath", jPanel9);
 
     jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -1027,7 +1011,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
             .addComponent(jLabel7)
             .addGap(139, 139, 139))
           .addGroup(jPanel4Layout.createSequentialGroup()
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
             .addContainerGap())
           .addComponent(btnDeleteXSLTLibrary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
     );
@@ -1075,7 +1059,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
           .addGroup(jPanel7Layout.createSequentialGroup()
             .addComponent(jLabel9)
             .addGap(0, 0, Short.MAX_VALUE))
-          .addComponent(btnDeleteXSLTItem, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+          .addComponent(btnDeleteXSLTItem, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
         .addContainerGap())
     );
     jPanel7Layout.setVerticalGroup(
@@ -1177,35 +1161,51 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
-    jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
-    jInternalFrame2Layout.setHorizontalGroup(
-      jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jInternalFrame2Layout.createSequentialGroup()
+    javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+    jPanel11.setLayout(jPanel11Layout);
+    jPanel11Layout.setHorizontalGroup(
+      jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel11Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(9, Short.MAX_VALUE))
+        .addContainerGap())
     );
-    jInternalFrame2Layout.setVerticalGroup(
-      jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jInternalFrame2Layout.createSequentialGroup()
+    jPanel11Layout.setVerticalGroup(
+      jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel11Layout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addGroup(jInternalFrame2Layout.createSequentialGroup()
-            .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-              .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGap(0, 0, Short.MAX_VALUE)))
+          .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap())
     );
 
-    desktopPane.add(jInternalFrame2);
-    jInternalFrame2.setBounds(700, 610, 810, 260);
+    jTabbedPane2.addTab("XSLT", jPanel11);
+
+    javax.swing.GroupLayout MainToolsLayout = new javax.swing.GroupLayout(MainTools.getContentPane());
+    MainTools.getContentPane().setLayout(MainToolsLayout);
+    MainToolsLayout.setHorizontalGroup(
+      MainToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(MainToolsLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jTabbedPane2)
+        .addContainerGap())
+    );
+    MainToolsLayout.setVerticalGroup(
+      MainToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(MainToolsLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jTabbedPane2))
+    );
+
+    desktopPane.add(MainTools);
+    MainTools.setBounds(750, 490, 910, 360);
 
     fileMenu.setMnemonic('f');
     fileMenu.setText("File");
@@ -1687,6 +1687,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		doXSLT();
 		jeditorTransformedXML.setCaretPosition(0);
 		buildSaveButtonText();
+		doXSLT();
   }//GEN-LAST:event_lstXSLTItemsValueChanged
 
   private void btnSaveXSLTEditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveXSLTEditsActionPerformed
@@ -2055,6 +2056,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 	}
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JInternalFrame MainTools;
   private javax.swing.JMenuItem aboutMenuItem;
   private javax.swing.JButton btnCleanNamespaces;
   private javax.swing.JButton btnClearConsole;
@@ -2085,8 +2087,6 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   private javax.swing.JButton jButton1;
   private javax.swing.JEditorPane jEditorPane2;
   private javax.swing.JFrame jFrameAbout;
-  private javax.swing.JInternalFrame jInternalFrame1;
-  private javax.swing.JInternalFrame jInternalFrame2;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel10;
   private javax.swing.JLabel jLabel11;
@@ -2103,6 +2103,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   private javax.swing.JLabel jLabel9;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPanel jPanel10;
+  private javax.swing.JPanel jPanel11;
   private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel3;
   private javax.swing.JPanel jPanel4;
@@ -2130,6 +2131,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   private javax.swing.JSplitPane jSplitPane2;
   private javax.swing.JSplitPane jSplitPane3;
   private javax.swing.JTabbedPane jTabbedPane1;
+  private javax.swing.JTabbedPane jTabbedPane2;
   private javax.swing.JTabbedPane jTabbedPane3;
   private javax.swing.JEditorPane jeditorPaneSelectedNode;
   private javax.swing.JEditorPane jeditorPaneSelectedXPath;

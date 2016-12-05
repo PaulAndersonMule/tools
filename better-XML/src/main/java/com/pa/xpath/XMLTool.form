@@ -174,7 +174,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="770" height="580"/>
+              <AbsoluteConstraints x="0" y="0" width="950" height="580"/>
             </Constraint>
           </Constraints>
 
@@ -218,8 +218,10 @@
                                   <Component id="btnProcessXMLEdits" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnCleanNamespaces" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cbRealtimeXML" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="cbUseDefaultNameSpaceName" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -242,6 +244,7 @@
                               <Component id="btnProcessXMLEdits" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cbRealtimeXML" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCleanNamespaces" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbUseDefaultNameSpaceName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Component id="jSplitPane1" pref="397" max="32767" attributes="0"/>
@@ -389,7 +392,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtTreeSearch" pref="323" max="32767" attributes="0"/>
+                              <Component id="txtTreeSearch" pref="503" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnTreeSearch" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -490,6 +493,11 @@
                   <Events>
                     <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCleanNamespacesMouseReleased"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="cbUseDefaultNameSpaceName">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="use default NS name in XPath?"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -844,7 +852,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="770" width="760" height="150"/>
+              <AbsoluteConstraints x="0" y="630" width="760" height="150"/>
             </Constraint>
           </Constraints>
 
@@ -865,8 +873,8 @@
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="btnClearConsole" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane13" min="-2" pref="160" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jScrollPane13" pref="57" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -879,7 +887,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JEditorPane" name="jtextConsole">
+                <Component class="javax.swing.JEditorPane" name="txtErrorLog">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Courier New" size="14" style="0"/>

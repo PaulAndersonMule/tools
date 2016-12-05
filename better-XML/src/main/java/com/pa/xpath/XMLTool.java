@@ -108,23 +108,23 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		lstXPaths.setModel(new DefaultListModel());
 		lstXSLTLibrary.setModel(new DefaultListModel());
 		lstXSLTItems.setModel(new DefaultListModel());
-		try{
+		try {
 			buildLibrarySectionsList();
 			buildXSLTLibrarySectionsList();
-		} catch (Exception x){
+		} catch (Exception x) {
 			reportError(x.getMessage(), jeditorXSLT);
 		}
 		fileContents = jeditorPaneXMLText.getText();
-		if (lstSections.getModel().getSize() > 0){
+		if (lstSections.getModel().getSize() > 0) {
 			lstSections.setSelectedIndex(0);
 		}
-		if (lstXSLTLibrary.getModel().getSize() > 0){
+		if (lstXSLTLibrary.getModel().getSize() > 0) {
 			lstXSLTLibrary.setSelectedIndex(0);
 		}
 
 		processChangedXML();
 		if (startupError != null) {
-			reportError("error reading prettyXSLT", jtextConsole);
+			reportError("error reading prettyXSLT", txtErrorLog);
 		}
 //    jtreeSourceXML.setCellRenderer(new TreeCellRenderer());
 
@@ -171,17 +171,6 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		List<XSLTLibrarySection> sections = DataService.getXSLTLibrarySections();
 		for (XSLTLibrarySection section : sections) {
 			((DefaultListModel<XSLTLibrarySection>) lstXSLTLibrary.getModel()).addElement(section);
-		}
-	}
-
-	private void buildXPathList() {
-		((DefaultListModel) lstXPaths.getModel()).removeAllElements();
-		if (selectedLibrarySection == null) {
-			return;
-		}
-		List<XPathItem> xpaths = DataService.getXpathLibraryItems(selectedLibrarySection.getSectionName());
-		for (XPathItem xpathEntry : xpaths) {
-			((DefaultListModel<XPathItem>) lstXPaths.getModel()).addElement(xpathEntry);
 		}
 	}
 
@@ -240,6 +229,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     btnProcessXMLEdits = new javax.swing.JButton();
     cbRealtimeXML = new javax.swing.JCheckBox();
     btnCleanNamespaces = new javax.swing.JButton();
+    cbUseDefaultNameSpaceName = new javax.swing.JCheckBox();
     jframeXPath = new javax.swing.JInternalFrame();
     jTabbedPane1 = new javax.swing.JTabbedPane();
     jSplitPane2 = new javax.swing.JSplitPane();
@@ -264,7 +254,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     btnFormatXSLT = new javax.swing.JButton();
     jiframeConsole = new javax.swing.JInternalFrame();
     jScrollPane13 = new javax.swing.JScrollPane();
-    jtextConsole = new javax.swing.JEditorPane();
+    txtErrorLog = new javax.swing.JEditorPane();
     btnClearConsole = new javax.swing.JButton();
     MainTools = new javax.swing.JInternalFrame();
     jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -434,7 +424,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
       jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel6Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(txtTreeSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+        .addComponent(txtTreeSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(btnTreeSearch)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -476,6 +466,8 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
       }
     });
 
+    cbUseDefaultNameSpaceName.setText("use default NS name in XPath?");
+
     javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
     jPanel8.setLayout(jPanel8Layout);
     jPanel8Layout.setHorizontalGroup(
@@ -493,8 +485,10 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
             .addComponent(btnProcessXMLEdits)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(btnCleanNamespaces)
-            .addGap(118, 118, 118)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(cbRealtimeXML)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(cbUseDefaultNameSpaceName)
             .addGap(0, 0, Short.MAX_VALUE)))
         .addGap(3, 3, 3))
     );
@@ -511,7 +505,8 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnProcessXMLEdits)
           .addComponent(cbRealtimeXML)
-          .addComponent(btnCleanNamespaces))
+          .addComponent(btnCleanNamespaces)
+          .addComponent(cbUseDefaultNameSpaceName))
         .addGap(6, 6, 6)
         .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
         .addGap(3, 3, 3))
@@ -535,7 +530,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     );
 
     desktopPane.add(jframeSourceXML);
-    jframeSourceXML.setBounds(0, 0, 770, 580);
+    jframeSourceXML.setBounds(0, 0, 950, 580);
 
     jframeXPath.setIconifiable(true);
     jframeXPath.setMaximizable(true);
@@ -729,9 +724,9 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
     jiframeConsole.setTitle("console");
     jiframeConsole.setVisible(true);
 
-    jtextConsole.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-    jtextConsole.setForeground(new java.awt.Color(255, 51, 51));
-    jScrollPane13.setViewportView(jtextConsole);
+    txtErrorLog.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+    txtErrorLog.setForeground(new java.awt.Color(255, 51, 51));
+    jScrollPane13.setViewportView(txtErrorLog);
 
     btnClearConsole.setText("clear");
     btnClearConsole.addActionListener(new java.awt.event.ActionListener() {
@@ -756,12 +751,12 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
         .addGap(6, 6, 6)
         .addComponent(btnClearConsole)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+        .addContainerGap())
     );
 
     desktopPane.add(jiframeConsole);
-    jiframeConsole.setBounds(0, 770, 760, 150);
+    jiframeConsole.setBounds(0, 630, 760, 150);
 
     MainTools.setVisible(true);
 
@@ -1279,7 +1274,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 
 	private void doXPath() {
 		xpath = jeditorXPath.getText();
-		if (xpath == null || xpath.trim().equals("")){
+		if (xpath == null || xpath.trim().equals("")) {
 			return;
 		}
 		doXPath(jeditorXPathResults, jeditorXPath.getText());
@@ -1307,6 +1302,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		}
 	}
 
+
   private void cbAutoXPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAutoXPathActionPerformed
 		autoXPath = cbAutoXPath.isSelected();
   }//GEN-LAST:event_cbAutoXPathActionPerformed
@@ -1333,7 +1329,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 	}
 
 	private void reportError(String message, JEditorPane alternateDest) {
-		jtextConsole.setText(message);
+		txtErrorLog.setText(message);
 		try {
 			jiframeConsole.setIcon(false);
 		} catch (PropertyVetoException ex1) {
@@ -1392,6 +1388,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 	}
 
   private void jtreeSourceXMLValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jtreeSourceXMLValueChanged
+		clearErrorLog();
 		TreePath path = evt.getPath();
 		String xpathCalc = buildXPath(path);
 		txtSelectedNodeXPath.setText(xpathCalc);
@@ -1409,12 +1406,12 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   }//GEN-LAST:event_jButton1ActionPerformed
 
   private void jeditorXSLTKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jeditorXSLTKeyReleased
-		jtextConsole.setText("");
+		txtErrorLog.setText("");
 		doXSLT();
   }//GEN-LAST:event_jeditorXSLTKeyReleased
 
 	private void doXSLT() {
-		if (jeditorXSLT.getText() == null || jeditorXSLT.getText().trim().equals("")){
+		if (jeditorXSLT.getText() == null || jeditorXSLT.getText().trim().equals("")) {
 			return;
 		}
 		try {
@@ -1496,6 +1493,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   }//GEN-LAST:event_btnTreeSearchActionPerformed
 
   private void btnProcessXMLEditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessXMLEditsActionPerformed
+		clearErrorLog();
 		processChangedXML();
   }//GEN-LAST:event_btnProcessXMLEditsActionPerformed
 
@@ -1536,7 +1534,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 			buildLibrarySectionsList();
 			((DefaultListModel<XPathItem>) lstXPaths.getModel()).removeAllElements();
 		} catch (Throwable x) {
-			reportError(x.getMessage(), jtextConsole);
+			reportError(x.getMessage(), txtErrorLog);
 		}
   }//GEN-LAST:event_btnDeleteSectionActionPerformed
 
@@ -1643,8 +1641,12 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   }//GEN-LAST:event_openMenuItemMouseClicked
 
   private void btnClearConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearConsoleActionPerformed
-		jtextConsole.setText("");
+		clearErrorLog();
   }//GEN-LAST:event_btnClearConsoleActionPerformed
+
+	private void clearErrorLog() {
+		txtErrorLog.setText("");
+	}
 
   private void btnCleanNamespacesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCleanNamespacesMouseReleased
 		try {
@@ -1668,7 +1670,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   }//GEN-LAST:event_lstXSLTLibraryValueChanged
 
   private void lstXSLTItemsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstXSLTItemsValueChanged
-		if (lstXSLTItems.getSelectedValue() == null){
+		if (lstXSLTItems.getSelectedValue() == null) {
 			return;
 		}
 		jeditorXSLT.setText(lstXSLTItems.getSelectedValue().getXSLT());
@@ -1719,31 +1721,29 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		setXPathNameRevertButtonStatus();
 		setSaveButtonText();
 
-
-
 		String xsltSectionName = txtXSLTSectionName.getText();
 		boolean xsltSectionExists = xsltSectionExistsInModel(xsltSectionName);
 		if (xsltSectionExists) {
 			if (!xsltNameExistsInSection(txtXSLTName.getText())) {
 				DataService.createXSLTEntry(xsltSectionName, txtXSLTName.getText(), jeditorXSLT.getText());
 				buildXSLTList();
-			} 
-				DataService.updateXSLTItem(xsltSectionName, txtXSLTName.getText(), jeditorXSLT.getText());
-			
+			}
+			DataService.updateXSLTItem(xsltSectionName, txtXSLTName.getText(), jeditorXSLT.getText());
+
 		} else {
 			XSLTLibrarySection section = new XSLTLibrarySection(xsltSectionName);
 			XSLTItem xsltItem;
 			String xsltName = txtXSLTName.getText();
-			
+
 			if (!xsltName.trim().equals("")) {
 				xsltItem = DataService.createXSLTEntryLazy(xsltSectionName, xsltName, jeditorXSLT.getText());
-				
+
 				lstXSLTItems.setSelectedValue(xsltItem, true);
 				buildXSLTList();
 			} else {
 				DataService.createXSLTLibrarySection(xsltSectionName);
 			}
-			
+
 			buildXSLTLibrarySectionsList();
 			lstXSLTLibrary.setSelectedValue(section, true);
 		}
@@ -1763,13 +1763,13 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   }//GEN-LAST:event_txtXSLTNameKeyReleased
 
   private void btnDeleteXSLTLibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteXSLTLibraryActionPerformed
-    DataService.deleteXSLTLibrarySection(lstXSLTLibrary.getSelectedValue().getSectionName());
+		DataService.deleteXSLTLibrarySection(lstXSLTLibrary.getSelectedValue().getSectionName());
 		buildXSLTLibrarySectionsList();
 		buildXSLTList();
   }//GEN-LAST:event_btnDeleteXSLTLibraryActionPerformed
 
   private void btnDeleteXSLTItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteXSLTItemActionPerformed
- 		DataService.deleteXSLTItem(lstXSLTItems.getSelectedValue().getXSLTLibraryPK().getXsltLibrarySection(), lstXSLTItems.getSelectedValue().getXSLTLibraryPK().getItemName());
+		DataService.deleteXSLTItem(lstXSLTItems.getSelectedValue().getXSLTLibraryPK().getXsltLibrarySection(), lstXSLTItems.getSelectedValue().getXSLTLibraryPK().getItemName());
 		buildXSLTList();
   }//GEN-LAST:event_btnDeleteXSLTItemActionPerformed
 
@@ -1841,7 +1841,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode) objects[0];
 
-		boolean useExplicitDefaultNamespace = this.nsResImpl.getNamespacePairs().size() > 1;
+		boolean useExplicitDefaultNamespace = this.nsResImpl.getNamespacePairs().size() > 1 && cbUseDefaultNameSpaceName.isSelected();
 		String rootName = ((TreeNodeObject) root.getUserObject()).buildPath(useExplicitDefaultNamespace, 1);
 		StringBuilder sb = new StringBuilder(String.format("/%s", rootName));
 
@@ -1866,6 +1866,17 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 			sb.append("/").append(((TreeNodeObject) node.getUserObject()).buildPath(useExplicitDefaultNamespace, counter));
 		}
 		return sb.toString();
+	}
+
+	private void buildXPathList() {
+		((DefaultListModel) lstXPaths.getModel()).removeAllElements();
+		if (selectedLibrarySection == null) {
+			return;
+		}
+		List<XPathItem> xpaths = DataService.getXpathLibraryItems(selectedLibrarySection.getSectionName());
+		for (XPathItem xpathEntry : xpaths) {
+			((DefaultListModel<XPathItem>) lstXPaths.getModel()).addElement(xpathEntry);
+		}
 	}
 
 	private void setSaveButtonText() {
@@ -2007,7 +2018,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 			doXSLT();
 			jeditorPaneXMLText.setCaretPosition(0);
 		} catch (XPathExpressionException x) {
-			reportError(x.getMessage(), jtextConsole);
+			reportError(x.getMessage(), txtErrorLog);
 		}
 	}
 
@@ -2017,7 +2028,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		try {
 			SAXParserFactory.newInstance().newSAXParser().parse(is, h);
 		} catch (Exception ex) {
-			reportError(ex.getMessage(), jtextConsole);
+			reportError(ex.getMessage(), txtErrorLog);
 		}
 		jtreeSourceXML.setModel(h.getTreeModel());
 		TreePath p = new TreePath(jtreeSourceXML.getModel().getRoot());
@@ -2079,6 +2090,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   private javax.swing.JCheckBox cbAutoXPath;
   private javax.swing.JCheckBox cbFullStringMatch;
   private javax.swing.JCheckBox cbRealtimeXML;
+  private javax.swing.JCheckBox cbUseDefaultNameSpaceName;
   private javax.swing.JDesktopPane desktopPane;
   private javax.swing.JMenuItem exitMenuItem;
   private javax.swing.JMenu fileMenu;
@@ -2143,7 +2155,6 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   private javax.swing.JInternalFrame jframeSourceXML;
   private javax.swing.JInternalFrame jframeXPath;
   private javax.swing.JInternalFrame jiframeConsole;
-  private javax.swing.JEditorPane jtextConsole;
   private javax.swing.JTree jtreeSourceXML;
   private javax.swing.JList lstSections;
   private javax.swing.JList lstXPaths;
@@ -2153,6 +2164,7 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
   private javax.swing.JMenuItem openMenuItem;
   private javax.swing.JRadioButton radioChildren;
   private javax.swing.JRadioButton radioSiblings;
+  private javax.swing.JEditorPane txtErrorLog;
   private javax.swing.JTextField txtSectionName;
   private javax.swing.JTextField txtSelectedNodeXPath;
   private javax.swing.JTextField txtTreeSearch;

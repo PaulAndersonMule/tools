@@ -890,14 +890,13 @@ public class JMSExplorer extends javax.swing.JFrame implements IMessageSink {
 		}
 		try {
 			s.close();
-			s = null;
+			s = null;	
 		} catch (Throwable ex) {
 		}
 	}
 
   private void btnSendMessageMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMessageMouseReleased
 		try {
-
 			Session s = conn.createSession(true, Session.AUTO_ACKNOWLEDGE);
 			Message msg = s.createTextMessage(textareaMsgToSend.getText());
 			s.createProducer(currentDestination).send(msg);

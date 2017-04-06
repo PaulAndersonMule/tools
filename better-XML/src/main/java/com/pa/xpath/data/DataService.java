@@ -175,6 +175,9 @@ public class DataService {
     em.getTransaction().commit();
   }
 
+	public static void main(String[] args){
+		em.createNamedQuery("XPathItem.findAll").getResultList();
+	}
 	
 	
 	

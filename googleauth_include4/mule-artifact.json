@@ -1,0 +1,20 @@
+{
+  "configs": [
+    "googleauth_include4.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "googleauth_include4",
+  "minMuleVersion": "4.1.2",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedResources": []
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

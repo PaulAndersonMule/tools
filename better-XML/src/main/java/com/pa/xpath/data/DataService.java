@@ -49,6 +49,7 @@ public class DataService {
     entry.setXpath(xpathEntry);
     em.persist(entry);
     em.getTransaction().commit();
+	
     em.detach(entry);
     return entry;
   }

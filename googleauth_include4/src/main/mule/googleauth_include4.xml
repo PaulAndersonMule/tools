@@ -1,48 +1,180 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:crypto="http://www.mulesoft.org/schema/mule/crypto"
-	xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/crypto http://www.mulesoft.org/schema/mule/crypto/current/mule-crypto.xsd
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-  <http:request-config name="googleAPIs"
-                        doc:name="HTTP Request configuration"
-                        doc:id="5a367172-6ef3-4fff-b107-0028bac816fb">
-      <http:request-connection protocol="HTTPS"
-                               host="www.googleapis.com"
-                               port="443"
-                               maxConnections="10"/>
-   </http:request-config>
-	<crypto:jce-config name="Crypto_Jce" doc:name="Crypto Jce" doc:id="5da1e699-4f82-46a9-aa80-f4e4ff4998d9" keystore="/Users/paul.anderson/projects/MI/dev2/my.jceks" password="notasecret" type="JCEKS">
-		<crypto:jce-key-infos>
-			<crypto:jce-symmetric-key-info keyId="privatekey" alias="privatekey" password="notasecret" />
-		</crypto:jce-key-infos>
-	</crypto:jce-config>
-	<flow name="googleauth_include4Flow" doc:id="6b6adad6-f359-48a8-a9f9-05cd636f2bbe" >
-		<scheduler doc:name="Scheduler" doc:id="9174f028-be6e-40d9-a40b-e38696b87925" >
-			<scheduling-strategy >
-				<fixed-frequency frequency="100000"/>
-			</scheduling-strategy>
-		</scheduler>
-		<flow-ref doc:name="Flow Reference" doc:id="286836b9-ad8d-4fd0-bdbf-19fa5a86ab83" name="googleauth_getAccessToken"/>
-	</flow>
-	<sub-flow name="googleauth_getAccessToken" doc:id="5f1c580a-9c2d-4afb-b3cb-7a6ff3684dbb">
-		<set-variable value='{"alg":"RS256", "typ":"JWT"}' doc:name="JWT header" doc:id="c99a99fa-5c21-4003-8e0e-b997b5d06448" variableName="jwtHeader"/>
-		<set-variable value="this is a claimset" doc:name="claimSet" doc:id="c8b1cce6-77e8-4e1a-9d76-62e12dca0ea0" variableName="claimSet"/>
-		<ee:transform doc:name="Transform Message" doc:id="e6284330-e16a-4259-ba82-d68e9227cbaf" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-import module::globalfuncs
+<?xml version="1.0" encoding="utf-8"?>
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os"
+      xmlns:java="http://www.mulesoft.org/schema/mule/java"
+      xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+      xmlns:crypto="http://www.mulesoft.org/schema/mule/crypto"
+      xmlns:http="http://www.mulesoft.org/schema/mule/http"
+      xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/crypto http://www.mulesoft.org/schema/mule/crypto/current/mule-crypto.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/java http://www.mulesoft.org/schema/mule/java/current/mule-java.xsd http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+  
+   <flow name="googleauth_getAccessToken"
+         doc:id="6b6adad6-f359-48a8-a9f9-05cd636f2bbe">
+      <os:contains doc:name="containsToken?"
+                   doc:id="1c44b1b9-de7c-4467-948c-c6173b0d43af"
+                   objectStore="googleJWT_OS"
+                   key="googleAPIToken"
+                   target="containsToken"/>
+      <choice doc:name="ifContains" doc:id="c179c75d-9aed-449c-99f7-bad5f6a6ad12">
+         <when expression="#[vars.containsToken]">
+            <os:retrieve doc:name="getTokenFromOS"
+                         doc:id="6266d7cf-ad9a-43b7-90c3-1c0c26e703db"
+                         key="googleAPIToken"
+                         objectStore="googleJWT_OS"/>
+            <logger level="INFO"
+                    doc:name="Logger"
+                    doc:id="519b695d-d28b-4bba-9709-5e6e2650714e"
+                    message="#[payload]"/>
+         </when>
+			<otherwise>
+				<flow-ref doc:name="googleauth_fetchAccessToken" doc:id="286836b9-ad8d-4fd0-bdbf-19fa5a86ab83" name="googleauth_fetchAccessToken" target="googleAPIToken" targetValue="#[payload]" />
+				<choice doc:name="statusCode is 200" doc:id="afaae85f-0ea3-4e40-9c99-553d6b85008c">
+			<when expression="#[vars.googleAPIToken.statusCode? and vars.googleAPIToken.statusCode == 200]">
+				<os:store doc:name="store just-retrieved token" doc:id="86b86b85-84e0-47d9-99fb-4165b51eae97" objectStore="googleJWT_OS" key="googleAPIToken">
+                  <os:value><![CDATA[#[vars.googleAPIToken.token]]]></os:value>
+               </os:store>
+						<set-payload value="#[write(vars.googleAPIToken.token,'application/java')]" doc:name="Set Payload" doc:id="8fcc4689-d747-4632-bc5d-aaa95cd3b97e" />
+			</when>
+			<otherwise>
+						<set-payload value="#[vars.googleAPIToken]" doc:name="Set Payload" doc:id="136979d0-38cc-4499-ae75-42dacd66905f" />
+						<logger level="INFO" doc:name="logFailure" doc:id="cd26c718-f698-4d6c-888f-04c62e697a87" message='#[write(payload, "application/json")]'/>
+			</otherwise>
+		</choice>
+         </otherwise>
+      </choice>
+  </flow>
+  
+   <sub-flow name="googleauth_fetchAccessToken" doc:id="ebb535fd-ff86-40a4-925e-993ab765fa4d" >
+		<flow-ref doc:name="googleauth_include4_encodeJWTHeader" doc:id="f6b416e2-22ab-4b1e-832d-2c51d1cc4a17" name="googleauth_include4_encodeJWTHeader" target="JWT" targetValue="#[payload]" />
+		<ee:transform doc:name="buildWWWEncodedFormBody" doc:id="1a696c72-34eb-459b-babc-cdeabd84b006">
+         <ee:message>
+            <ee:set-payload>%dw 2.0
+output application/java
+---
+"grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&amp;assertion=" ++ (vars.JWT as String)</ee:set-payload>
+         </ee:message>
+      </ee:transform>
+		<http:request method="POST" doc:name="getToken" doc:id="6ff272a1-a8e6-4fa8-95e7-1f3760d5c4d5" config-ref="googleAPIs" path="/oauth2/v4/token" sendBodyMode="ALWAYS" requestStreamingMode="NEVER">
+         <http:headers><![CDATA[#[output applicaton/java
+---
+{
+	"content-type" : "application/x-www-form-urlencoded"
+}]]]></http:headers>
+         <http:response-validator>
+            <http:success-status-code-validator values="200,400,401,500" />
+         </http:response-validator>
+         
+      </http:request>
+		<set-variable value="#[message.attributes.statusCode]" doc:name="statusCode" doc:id="9a99fe50-3701-4df6-b597-7182a2d7b7f7" variableName="statusCode" />
+		<choice doc:name="is 200">
+			<when expression="#[message.attributes.statusCode == 200]">
+				<ee:transform doc:name="access_token" doc:id="1aa2715c-6aae-4264-905c-8a46c68c7c73">
+         <ee:message>
+            <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-{ 
-	val: globalfuncs::encode(vars.jwtHeader)	
+{
+	statusCode: attributes.statusCode,
+	token: payload.access_token
 }]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
-		<set-payload value="#[payload.val]" doc:name="Set Payload" doc:id="d40d0ac4-56f8-4824-8723-cca3a0886748" />
-		<crypto:jce-sign doc:name="Jce sign" doc:id="d8b6f604-5176-44c3-9406-ec985b45bd9e" config-ref="Crypto_Jce" keyId="privatekey"/>
-		<logger level="INFO" doc:name="Logger" doc:id="58712c3c-aa03-4abf-965c-15c4e979d6da" message="#[payload]"/>
+					<ee:set-attributes><![CDATA[%dw 2.0
+output application/java
+---
+{
+	
+}]]></ee:set-attributes>
+         </ee:message>
+      </ee:transform>
+			</when>
+			<otherwise >
+				<ee:transform doc:name="buildError" doc:id="95c54d74-9fcc-46e1-87a3-fd1e8d1dd4cc">
+							<ee:message>
+								<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	statusCode: message.attributes.statusCode,
+	response: message.payload 
+} ]]></ee:set-payload>
+							</ee:message>
+						</ee:transform>
+			</otherwise>
+		</choice>
 	</sub-flow>
+	<sub-flow name="googleauth_include4_encodeJWTHeader"
+             doc:id="005dbdb5-5efd-454d-90fe-5312326df6bd">
+      <set-variable value="{&#34;alg&#34;:&#34;RS256&#34;,&#34;typ&#34;:&#34;JWT&#34;}"
+                    doc:name="JWT header"
+                    doc:id="c99a99fa-5c21-4003-8e0e-b997b5d06448"
+                    variableName="jwtHeader"/>
+      <ee:transform doc:name="encodeHeader" doc:id="b84cc034-acc5-4b66-a401-53bc22c76c59">
+         <ee:message>
+      </ee:message>
+         <ee:variables>
+            <ee:set-variable variableName="encodedHeader">%dw 2.0
+import * from dw::core::Binaries
+output application/java
+---
+toBase64(vars.jwtHeader as String)
+</ee:set-variable>
+         </ee:variables>
+      </ee:transform>
+      <ee:transform doc:name="build claimset" doc:id="f1f84ca9-6de4-48b4-9022-ffabdc11939a">
+         <ee:message>
+      </ee:message>
+         <ee:variables>
+            <ee:set-variable variableName="claimset"><![CDATA[%dw 2.0
+import module::globalfuncs
+import java!com::mulesoft::services::TimeUtil
+output application/json
+---
+{
+//    iss: "read-only@dev-svcs-dashboard-masterdata.iam.gserviceaccount.com",
+    iss: vars.xServiceAccountID,
+//    scope: "https://www.googleapis.com/auth/spreadsheets.readonly",
+    scope: vars.xGoogleAPIScope,
+    aud: "https://www.googleapis.com/oauth2/v4/token",
+    exp: (TimeUtil::getSecondsSince1970UTC() + 3600),
+    iat: (TimeUtil::getSecondsSince1970UTC())} ]]></ee:set-variable>
+         </ee:variables>
+      </ee:transform>
+      <ee:transform doc:name="concatHeaderAndClaimset"
+                    doc:id="acfeac52-f879-4807-b459-77c5bd72bcc8">
+         <ee:message>
+      </ee:message>
+         <ee:variables>
+            <ee:set-variable variableName="headerPeriodClaimset">%dw 2.0
+import * from dw::core::Binaries
+
+output application/java
+---
+vars.encodedHeader ++ "." ++ toBase64(write(vars.claimset, "application/json"))</ee:set-variable>
+         </ee:variables>
+      </ee:transform>
+
+      <crypto:jce-sign doc:name="Jce sign"
+                       doc:id="d8b6f604-5176-44c3-9406-ec985b45bd9e"
+                       config-ref="Crypto_Jce"
+                       algorithm="SHA256withRSA"
+                       keyId="privatekey">
+         <crypto:content>#[vars.headerPeriodClaimset]</crypto:content>
+      </crypto:jce-sign>
+
+      <!-- <java:invoke-static doc:name="sign" doc:id="c4c9d667-e195-4ccf-9fd2-af4a6a5fe542" class="com.mulesoft.services.SigningUtils" method="sign"> <java:args 
+      ><![CDATA[java.lang.String, java.lang.String]]></java:args> </java:invoke-static> -->
+      <ee:transform doc:name="form JWT" doc:id="0f79bc98-a2cf-423f-8ff8-3586a9bf6e5c">
+         <ee:message>
+            <ee:set-payload>%dw 2.0
+import * from dw::core::Binaries
+import java!com::mulesoft::services::SigningUtils
+output application/java
+---
+vars.headerPeriodClaimset ++ "." ++ SigningUtils::base64Convert(payload as String)</ee:set-payload>
+         </ee:message>
+         <ee:variables>
+      </ee:variables>
+      </ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="67797e4f-1a35-454e-ad5b-acbc632dc2d2" />
+  </sub-flow>
 </mule>

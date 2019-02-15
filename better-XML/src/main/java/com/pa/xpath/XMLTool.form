@@ -513,7 +513,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="760" y="0" width="800" height="480"/>
+              <AbsoluteConstraints x="960" y="0" width="800" height="480"/>
             </Constraint>
           </Constraints>
 
@@ -1180,9 +1180,9 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JList" name="lstSections">
+                            <Component class="javax.swing.JList" name="lstXPathSections">
                               <Events>
-                                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="lstSectionsValueChanged"/>
+                                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="lstXPathSectionsValueChanged"/>
                               </Events>
                             </Component>
                           </SubComponents>

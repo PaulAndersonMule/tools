@@ -34,7 +34,7 @@ public class DataService {
     return res;
   }
   
-  public static XPathLibrarySection createLibrarySection(String name){
+  public static XPathLibrarySection createXPathLibrarySection(String name){
     XPathLibrarySection section = new XPathLibrarySection(name);
     em.getTransaction().begin();
     em.persist(section);
@@ -71,7 +71,7 @@ public class DataService {
   public static void deleteXPathItem(String sectionName, String xpathItemName){
     XPathItemPK key = new XPathItemPK(sectionName, xpathItemName);
     XPathItem toRemove = em.find(XPathItem.class, key);
-    em.getTransaction().begin();
+        em.getTransaction().begin();
     em.remove(toRemove);
     em.getTransaction().commit();
   }

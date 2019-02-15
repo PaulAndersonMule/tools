@@ -40,7 +40,7 @@ public class XSLTItem implements Serializable,Comparable<XSLTItem> {
   @Column(name = "XSLT", nullable = false)
 	private String xslt;
 	@JoinColumn(name = "XSLT_LIBRARY_SECTION", referencedColumnName = "SECTION_NAME", nullable = false, insertable = false, updatable = false)
-  @ManyToOne(optional = false, cascade = CascadeType.ALL)
+  @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
 	private XSLTLibrarySection xsltLibrarySection;
 
 	public XSLTItem() {

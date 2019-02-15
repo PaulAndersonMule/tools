@@ -1,0 +1,4 @@
+"http listener is TLS",//*[ends-with(local-name(), "-connection") and not (./*:context)]/string-join((@host, local-name(), "false"), ",")
+"TLS password is not cleartext",//*[starts-with(local-name(), "listener")]/*:listener-connection/tls:context/tls:key-store[not(starts-with(@password, "${"))]/string-join((@path, local-name(), "false"), ",")
+"flow starts with file name",//*[(local-name() = "flow" or local-name() = "sub-flow") and not(starts-with(@name, concat(^fileName^, "_")))]/string-join((@name, local-name(), "false"), ",")
+"http listener check",//*[ends-with(local-name(), "-connection")]/concat(local-name(), ", ", starts-with(@host, "$"), ",", @host, ", ", ((@tlsContext or ./tls:context)))

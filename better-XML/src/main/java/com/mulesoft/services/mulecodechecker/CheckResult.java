@@ -20,7 +20,7 @@ public class CheckResult {
     //TODO this needs to throw unchecked Exception if there's every an overwrite-situation.
     //this relieves us of the need to separately validate rule-files - they will just die with "fail"
     // if there are duplicate XQuery-names
-    public void addResult(String fileName, String xqueryName, List<String> result) {
+    void addResult(String fileName, String xqueryName, List<String> result) {
         LinkedHashMap<String, List<String>> resultPerFile;
         if (!this.result.containsKey(fileName)) {
             // initiate the result of this file
@@ -32,7 +32,7 @@ public class CheckResult {
         this.result.put(fileName, resultPerFile);
     }
 
-    public String toCSV() {
+    String toCSV() {
         StringBuilder sb = new StringBuilder();
         this.result.entrySet().forEach((Entry<String, LinkedHashMap<String, List<String>>> resultPerFile) -> {
             resultPerFile.getValue().entrySet().forEach((Entry<String, List<String>> resultPerXquery) -> {
@@ -44,7 +44,7 @@ public class CheckResult {
         return sb.toString();
     }
 
-    public String stringify() {
+    String stringify() {
         return Objects.toString(this.result);
     }
 }

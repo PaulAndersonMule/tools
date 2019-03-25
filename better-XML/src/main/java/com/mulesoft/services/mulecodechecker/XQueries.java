@@ -28,13 +28,13 @@ public class XQueries {
 
     }
 
-    public static XQueries getInstance() {
+    static XQueries getInstance() {
         return instance;
     }
 
     private final Map<String, String> xqueries = new LinkedHashMap<>();
 
-    public void put(String name, String xquery) {
+    void put(String name, String xquery) {
         if (instance.xqueries.containsKey(name)) {
             throw new IllegalArgumentException("Duplicate XQuery name is not allowed. Please check this XQuery: " + name);
         }
@@ -42,11 +42,11 @@ public class XQueries {
         instance.xqueries.put(name, xquery);
     }
 
-    public String get(String name) {
+    String get(String name) {
         return instance.xqueries.get(name);
     }
 
-    public Set<String> keySet() {
+    Set<String> keySet() {
         return instance.xqueries.keySet();
     }
 
@@ -59,7 +59,7 @@ public class XQueries {
      *
      * @param xQueriesFilePath the absolute path of the xquery file
      */
-    public void loadFromFile(String xQueriesFilePath) {
+    void loadFromFile(String xQueriesFilePath) {
         log.debug("loading XQueries from file: " + xQueriesFilePath);
         Path path = Paths.get(xQueriesFilePath);
         if (!Files.exists(path)) {
@@ -90,7 +90,7 @@ public class XQueries {
         }
     }
 
-    public String format(String xquery, String fileName) {
+    String format(String xquery, String fileName) {
         // currently only support replacing the file name.
         if (StringUtils.containsIgnoreCase(xquery, "^fileName^")) {
             return StringUtils.replaceIgnoreCase(xquery, "^fileName^", "\"" + fileName + "\"");

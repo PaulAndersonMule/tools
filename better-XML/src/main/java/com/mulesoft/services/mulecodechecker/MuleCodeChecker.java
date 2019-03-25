@@ -37,14 +37,14 @@ public class MuleCodeChecker {
     public static void main(String[] args) {
         try {
             MuleCodeChecker codeChecker = new MuleCodeChecker();
-            codeChecker.run(args);
+            codeChecker.runCodeChecker(args);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             log.debug(e.getMessage(), e);
         }
     }
 
-    public void run(String[] args) {
+    private void runCodeChecker(String[] args) {
         if (!validateOptions(args)) {
             // options validation failed
             return;

@@ -34,6 +34,14 @@ public class MuleCodeChecker {
     private String xQueriesFilePath;
     private OutputFormat outputFormat;
 
+    public MuleCodeChecker() {
+    }
+
+    public MuleCodeChecker(String inputPath, String xQueriesFilePath) {
+        this.inputPath = inputPath;
+        this.xQueriesFilePath = xQueriesFilePath;
+    }
+
     public static void main(String[] args) {
         try {
             MuleCodeChecker codeChecker = new MuleCodeChecker();
@@ -44,17 +52,22 @@ public class MuleCodeChecker {
         }
     }
 
+    public CheckResult runCodeChecker() {
+
+        Collection<Path> muleFiles = getMuleXmlFiles(inputPath);
+        XQueries xQueries = getXQueries(xQueriesFilePath);
+
+        // run the check
+        return check(muleFiles, xQueries);
+    }
+
     private void runCodeChecker(String[] args) {
         if (!validateOptions(args)) {
             // options validation failed
             return;
         }
 
-        Collection<Path> muleFiles = getMuleXmlFiles(inputPath);
-        XQueries xQueries = getXQueries(xQueriesFilePath);
-
-        // run the check
-        CheckResult result = check(muleFiles, xQueries);
+        CheckResult result = this.runCodeChecker();
 
         switch (outputFormat) {
             case RAW:

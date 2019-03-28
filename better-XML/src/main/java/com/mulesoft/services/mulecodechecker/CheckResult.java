@@ -32,7 +32,7 @@ public class CheckResult {
         this.result.put(fileName, resultPerFile);
     }
 
-    String toCSV() {
+    public String toCSV() {
         StringBuilder sb = new StringBuilder();
         this.result.entrySet().forEach((Entry<String, LinkedHashMap<String, List<String>>> resultPerFile) -> {
             resultPerFile.getValue().entrySet().forEach((Entry<String, List<String>> resultPerXquery) -> {

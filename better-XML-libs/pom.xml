@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.pa.xpath</groupId>
-  <artifactId>xpath20Tool</artifactId>
+  <groupId>com.pa</groupId>
+  <artifactId>xml-libs</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
-  <name>xpath20Tool</name>
+  <name>better-XML-libs</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -20,38 +20,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.3</version>
-      </plugin>    
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.pa.xpath.XMLTool</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.1</version>
-        <executions>
-          <execution>
-            <id>copy-dependencies</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/lib</outputDirectory>
-              <overWriteReleases>false</overWriteReleases>
-              <overWriteSnapshots>false</overWriteSnapshots>
-              <overWriteIfNewer>true</overWriteIfNewer>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -76,7 +44,7 @@
           <include> META-INF/*.xml</include>
         </includes>
       </resource>
-    </resources>    
+    </resources>
   </build>
 
   <dependencies>
@@ -102,29 +70,9 @@
       <version>1.7</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derby</artifactId>
-      <version>10.11.1.1</version>
-    </dependency>
-    <dependency>
       <groupId>net.sf.saxon</groupId>
       <artifactId>Saxon-HE</artifactId>
       <version>9.9.0-1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.persistence</groupId>
-      <artifactId>eclipselink</artifactId>
-      <version>2.6.4</version>
-    </dependency>
-    <dependency>
-      <groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
-      <artifactId>bounce</artifactId>
-      <version>0.18</version>
-    </dependency>
-    <dependency>
-      <groupId>com.pa</groupId>
-      <artifactId>xml-libs</artifactId>
-      <version>1.0</version>
     </dependency>
   </dependencies>
 </project>

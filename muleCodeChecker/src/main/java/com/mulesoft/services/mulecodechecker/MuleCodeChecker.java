@@ -36,6 +36,7 @@ public class MuleCodeChecker {
     private String inputPath;
     private String xQueriesFilePath;
     private OutputFormat outputFormat;
+    private static final String FILE_SEPARATOR = System.getProperty("file.separator");
 
     public MuleCodeChecker() {
     }
@@ -208,7 +209,8 @@ public class MuleCodeChecker {
                         Path dir = filePath.getParent();
                         // check in both Mule3 and Mule4 dir structure
                         boolean isInMuleDir = dir.endsWith("src/main/mule") || dir.endsWith("src/main/app");
-                        return isXml && isInMuleDir;
+                        boolean isTarget = dir.toString().contains(FILE_SEPARATOR + "target" + FILE_SEPARATOR);
+                        return isXml && isInMuleDir && !isTarget;
                     }, FileVisitOption.FOLLOW_LINKS)
                     .sorted()
                     .collect(Collectors.toList());

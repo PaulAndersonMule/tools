@@ -1,0 +1,12 @@
+"http listener is TLS",//*[ends-with(local-name(), "-connection") and not (./*:context)]/string-join((@host, local-name(), "false"), ",")
+"TLS password is not cleartext",//*[starts-with(local-name(), "listener")]/*:listener-connection/*:context/*:key-store[not(starts-with(@password, "${"))]/string-join((@path, local-name(), "false"), ",")
+"flow starts with file name",//*[(local-name() = "flow" or local-name() = "sub-flow") and not(starts-with(@name, ^fileName^)) and not(starts-with(@name, "get:\") or starts-with(@name, "patch:\") or starts-with(@name, "put:\") or starts-with(@name, "post:\") or starts-with(@name, "delete:\") or starts-with(@name, "options:\") or starts-with(@name, "head:\"))]/string-join((@name, local-name(), "false"), ",")
+"http listener check",//*[ends-with(local-name(), "-connection")]/concat(local-name(), ", ", starts-with(@host, "$"), ",", @host, ", ", ((@tlsContext or ./*:context)))
+"connx is TLS-enabled",//*[ends-with(local-name(), "-connection")]/concat(local-name(), ", ",((not(not(@tlsContext)) or not(not(./*:context)))))
+"connection-config hardcoded",//*[ends-with(local-name(), "-connection")]/concat(local-name(), ", ",starts-with(@host, "$"))
+"cc addresses hardcoded",//*:cc-address/concat(starts-with(@value,"${"),", ", ../../@*:name, ", ",@value)
+"requester has hardcoded URL",//*[ends-with(local-name(), "-connection")]/concat(local-name(), ", ",starts-with(@host, "$"))
+"bad flow-name",//*:flow/concat(@name, ", ", not(ends-with(@name, "Flow")))
+"bad subFlow-name",//*:sub-flow/concat(@name, ", ", not(ends-with(@name, "Flow")))
+"bad flowRef -name",//*:flow-ref/concat(@doc:name, ", ",@doc:name != "Flow Reference")
+

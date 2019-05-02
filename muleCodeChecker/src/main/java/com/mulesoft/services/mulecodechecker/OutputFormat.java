@@ -10,6 +10,6 @@ package com.mulesoft.services.mulecodechecker;
  * @author kun.li
  */
 public enum OutputFormat {
-    RAW,
-    JAVA
+  RAW,
+  JAVA
 }

@@ -42,6 +42,7 @@ public class CheckResult {
     StringBuilder sb = new StringBuilder();
 
     for (Entry<String, LinkedHashMap<String, List<String>>> resultPerFile : this.result.entrySet()) {
+      sb.append("\n");
       // for each check results per XML file
       Set<Entry<String, List<String>>> results = resultPerFile.getValue().entrySet();
 
@@ -50,10 +51,7 @@ public class CheckResult {
           String pass = singleResult.substring(singleResult.lastIndexOf(",") + 1).trim();
           boolean passThisOne = Boolean.valueOf(pass);
           passed = passed && passThisOne;
-          sb.append(String.format("%s,%s,%s", resultPerFile.getKey(), resultPerXquery.getKey(), singleResult));
-        }
-          sb.append("\n");
-        if (resultPerXquery.getValue().size() > 0){
+          sb.append(String.format("%s,%s,%s\n", resultPerFile.getKey(), resultPerXquery.getKey(), singleResult));
         }
       }
     }

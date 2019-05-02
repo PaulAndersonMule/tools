@@ -1,0 +1,19 @@
+= Mule Code Checker
+
+A standalone Java application to run a series of XPath on the Mule XML files to detect code smell.
+
+== Quick Start
+
+. Clone this repository
+. Build using `mvn clean package`
+. Run the application `java -jar muleCodeChecker-1.0.0.jar`
+
+== Options
+* `--inputPath` : an absolution path pointing to location where Mule project(s) reside
+* `--xQueries` : A file containing XQuery expressions
+** format: "name",XQuery expression
+** In the XQuery expression, `\^fileName^` can be used as a placeholder to be replaced by the actual XML file name
+* `--outputFormat` : Must be RAW or JAVA
+
+== Example
+ java -jar muleCodeChecker-1.0.0.jar --inputPath /muleApps/prc-mulesoft-testApp --xQueries ./src/test/resources/testXQueries.txt --outputFormat RAW

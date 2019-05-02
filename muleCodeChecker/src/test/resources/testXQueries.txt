@@ -1,5 +1,5 @@
 "email addresses externalized",//*:to-address/string-join((../../@*:name,@value, starts-with(@value,"${")), ", ")
-"connx is TLS-enabled",//*[ends-with(local-name(), "-connection")]/ string-join(("-", (not(not(@tlsContext)) or not(not(./*:context)))),    ", " )
+"connx is TLS-enabled",//*[ends-with(local-name(), "-connection")]/ string-join(("-", (not(not(@tlsContext)) or not(not(./*:context)))), ", " )
 "hostName externalized",//*[ends-with(local-name(), "-connection")]/string-join((local-name(), @host, starts-with(@host, "$") or not(@host))," ,") 
 "scheduler config externalized",//*:scheduler/*:scheduling-strategy/*:fixed-frequency/string-join(("-", @frequency, starts-with("$", ", ")), ",")
 "cron  config externalized",//*:scheduler/*:scheduling-strategy/*:cron/string-join(("-", @expression, starts-with("$", ", ")), ",")
@@ -12,4 +12,4 @@
 "props-files environment-enabled",//*:configuration-properties/string-join((@doc:name,  (contains(@file, "${mule.env}")) or contains(@file, "-common.") ), ", ")
 "choice properly named",not(/*:mule/*[local-name() != "flow" and local-name() != "sub-flow"])  or contains(^fileName^, "global")
 "set-payload named properly",//n:set-payload/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
-"set-variable named properly",//n:set-variable/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
+"set-variable named properly",//n:set-variable/string-join((@doc:name, not(starts-with(@doc:name, "Set Variable"))),", ")

@@ -64,6 +64,11 @@ public class MuleCodeChecker {
     }
   }
 
+  /**
+   * currently not used
+   * @param args
+   * @return 
+   */
   private static List<String> validateOptions(String args[]) {
     Options options = buildOptions();
     // create the parser
@@ -224,6 +229,9 @@ public class MuleCodeChecker {
 
     try {
 //      MuleCodeChecker codeChecker = new MuleCodeChecker();
+    if (args[2].equals("default")){
+      args[2] = "RAW";
+    }
       MuleCodeChecker.runCodeChecker(args);
     } catch (Exception e) {
       System.out.println(e);

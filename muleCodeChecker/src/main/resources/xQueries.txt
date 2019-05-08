@@ -13,3 +13,4 @@
 "choice properly named",not(/*:mule/*[local-name() != "flow" and local-name() != "sub-flow"])  or contains(^fileName^, "global")
 "set-payload named properly",//n:set-payload/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
 "set-variable named properly",//n:set-variable/string-join((@doc:name, not(starts-with(@doc:name, "Set Variable"))),", ")
+"main file flow name",//*:flow/string-join((@name, ends-with(@name, "-main") or ends-with(@name, "-console") or ends-with(@name, "-config") or ^fileName^ != ^mainFileName^), ", ")

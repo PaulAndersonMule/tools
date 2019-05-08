@@ -12,5 +12,4 @@
 "choice properly named",//*:choice/string-join(("choice properly named", @doc:name != "Choice"),", ")
 "set-payload named properly",//n:set-payload/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
 "set-variable named properly",//n:set-variable/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
-"rule for main-file",//n:flow/string-join((@name, starts-with(@name, "get:") or starts-with(@name, "put:") or starts-with(@name, "post:") or starts-with(@name, "delete:") or starts-with(@name, "options:") or ends-with(@name, "-api-main") ), ", ")
 "keypasswords secure",//@keyPassword/string-join((../local-name(),.,    (. = "provided at deploy-time" or starts-with(., "${secure::"))),", ")

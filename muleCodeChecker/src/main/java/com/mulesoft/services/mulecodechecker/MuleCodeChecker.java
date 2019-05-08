@@ -38,21 +38,27 @@ public class MuleCodeChecker {
   public MuleCodeChecker() {
   }
 
-  public static CheckResult runCodeChecker(String inputPath, String xQueriesFilePath, String outputFormat) {
+  public static CheckResult runCodeChecker(String inputPath, String mainFileName, String xQueriesFilePath, String outputFormat) {
 
     List<Path> muleFiles = getMuleXMLFiles(inputPath);
     XQueries.initialize(xQueriesFilePath);
 
+    // use project name as mainFileName if default is specified.
+    String projectName = getProjectName(inputPath);
+    if (mainFileName.equals("default")) {
+        mainFileName = projectName;
+    }
+
     // run the check
-    return check(muleFiles);
+    return check(muleFiles, mainFileName);
   }
 
   private static void runCodeChecker(String[] args) {
-    if (args.length != 3) {
-      System.out.println("usage is 3 arguments: absolute path to well-formed Mule project, absolute path to XQuery rules file, RAW|JAVA");
+    if (args.length != 4) {
+      System.out.println("usage is 4 arguments: absolute path to well-formed Mule project, main APIKit XML file name|default, absolute path to XQuery rules file|default, RAW|JAVA");
     }
-    CheckResult result = runCodeChecker(args[0], args[1], args[2]);
-    String outputFormat = args[2];
+    CheckResult result = runCodeChecker(args[0], args[1], args[2], args[3]);
+    String outputFormat = args[3];
     switch (outputFormat) {
       case "RAW":
         System.out.println(result.toCSV());
@@ -149,7 +155,7 @@ public class MuleCodeChecker {
    *      value List<String> of results from running xQuery against fileName
    * </pre>
    */
-  private static CheckResult check(Collection<Path> muleFiles) {
+  private static CheckResult check(Collection<Path> muleFiles, String mainFileName) {
     CheckResult result = new CheckResult();
     muleFiles.forEach((muleFile) -> {
       LinkedHashMap<String, List<String>> singleResult = new LinkedHashMap<>();
@@ -168,7 +174,7 @@ public class MuleCodeChecker {
           String xQuery = XQueries.get(xQueryName);
           // pre-process the XQuery to replace the file name
           String fileNameWithoutExt = StringUtils.removeEndIgnoreCase(muleFile.getFileName().toString(), ".xml");
-          xQuery = XQueries.format(xQuery, fileNameWithoutExt);
+          xQuery = XQueries.format(xQuery, fileNameWithoutExt, mainFileName);
           log.debug("pre-processed XQuery: " + xQuery);
 
           // run the XQuery against the XML file content
@@ -225,12 +231,17 @@ public class MuleCodeChecker {
     }
   }
 
+  private static String getProjectName(String inputPath) {
+      Path projectDir = Paths.get(inputPath);
+      return projectDir.getName(projectDir.getNameCount() - 1).toString();
+  }
+
   public static void main(String[] args) {
 
     try {
 //      MuleCodeChecker codeChecker = new MuleCodeChecker();
-    if (args[2].equals("default")){
-      args[2] = "RAW";
+    if (args[3].equals("default")){
+      args[3] = "RAW";
     }
       MuleCodeChecker.runCodeChecker(args);
     } catch (Exception e) {

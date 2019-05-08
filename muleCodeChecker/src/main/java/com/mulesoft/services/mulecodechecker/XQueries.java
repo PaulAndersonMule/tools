@@ -117,12 +117,15 @@ public abstract class XQueries {
     });
   }
 
-  protected static String format(String xquery, String fileName) {
-    // currently only support replacing the file name.
-    if (StringUtils.containsIgnoreCase(xquery, "^fileName^")) {
-      return StringUtils.replaceIgnoreCase(xquery, "^fileName^", "\"" + fileName + "\"");
-    } else {
-      return xquery;
+  protected static String format(String xquery, String fileName, String mainFileName) {
+    // replace the file name placeholders.
+    String result = xquery;
+    if (StringUtils.containsIgnoreCase(result, "^mainFileName^")) {
+      result = StringUtils.replaceIgnoreCase(result, "^mainFileName^", "\"" + mainFileName + "\"");
     }
+    if (StringUtils.containsIgnoreCase(result, "^fileName^")) {
+      result = StringUtils.replaceIgnoreCase(result, "^fileName^", "\"" + fileName + "\"");
+    }
+    return result;
   }
 }

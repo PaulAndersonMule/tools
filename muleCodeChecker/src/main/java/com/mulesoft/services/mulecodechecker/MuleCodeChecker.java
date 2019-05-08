@@ -46,7 +46,7 @@ public class MuleCodeChecker {
     // use project name as mainFileName if default is specified.
     String projectName = getProjectName(inputPath);
     if (mainFileName.equals("default")) {
-        mainFileName = projectName;
+      mainFileName = projectName;
     }
 
     // run the check
@@ -72,8 +72,9 @@ public class MuleCodeChecker {
 
   /**
    * currently not used
+   *
    * @param args
-   * @return 
+   * @return
    */
   private static List<String> validateOptions(String args[]) {
     Options options = buildOptions();
@@ -113,27 +114,27 @@ public class MuleCodeChecker {
 
   private static Options buildOptions() {
     Option inputPathOption = Option.builder()
-        .longOpt("inputPath")
-        .hasArg()
-        .type(java.lang.String.class)
-        .desc("Absolute path to a well-formed Mule project, pointing at the project root")
-        .required()
-        .build();
+            .longOpt("inputPath")
+            .hasArg()
+            .type(java.lang.String.class)
+            .desc("Absolute path to a well-formed Mule project, pointing at the project root")
+            .required()
+            .build();
 
     Option xQueriesOption = Option.builder()
-        .longOpt("xQueries")
-        .hasArg()
-        .type(java.lang.String.class)
-        .desc("Input path to a file containing XQuery expressions")
-        .required()
-        .build();
+            .longOpt("xQueries")
+            .hasArg()
+            .type(java.lang.String.class)
+            .desc("Input path to a file containing XQuery expressions")
+            .required()
+            .build();
 
     Option outputFormatOption = Option.builder()
-        .longOpt("outputFormat")
-        .hasArg()
-        .desc("Output format. Must be RAW or JAVA")
-        .required()
-        .build();
+            .longOpt("outputFormat")
+            .hasArg()
+            .desc("Output format. Must be RAW or JAVA")
+            .required()
+            .build();
 
     Options options = new Options();
     options.addOption(inputPathOption);
@@ -170,24 +171,25 @@ public class MuleCodeChecker {
       }
 
       XQueries.keySet().forEach((xQueryName) -> {
+        String xQuery = XQueries.get(xQueryName);
+        // pre-process the XQuery to replace the file name
+        String fileNameWithoutExt = StringUtils.removeEndIgnoreCase(muleFile.getFileName().toString(), ".xml");
+        xQuery = XQueries.format(xQuery, fileNameWithoutExt, mainFileName);
+        log.debug("pre-processed XQuery: " + xQuery);
+
+        // run the XQuery against the XML file content
+        List<XdmItem> xdmItems;
         try {
-          String xQuery = XQueries.get(xQueryName);
-          // pre-process the XQuery to replace the file name
-          String fileNameWithoutExt = StringUtils.removeEndIgnoreCase(muleFile.getFileName().toString(), ".xml");
-          xQuery = XQueries.format(xQuery, fileNameWithoutExt, mainFileName);
-          log.debug("pre-processed XQuery: " + xQuery);
-
-          // run the XQuery against the XML file content
-          List<XdmItem> xdmItems = XPathUtils.evaluate(xQuery, xmlContents, nsrImpl);
-          List<String> xqueryResult = new ArrayList<>();
-
-          xdmItems.forEach((item) -> {
-            xqueryResult.add(item.toString());
-          });
-          result.addResult(muleFile.getFileName().toString(), xQueryName, xqueryResult);
+          xdmItems = XPathUtils.evaluate(xQuery, xmlContents, nsrImpl);
         } catch (SaxonApiException ex) {
           throw new RuntimeException(String.format("Error occurred when running XQuery check for query '%s' (%s) ", xQueryName, XQueries.get(xQueryName)), ex);
         }
+        List<String> xqueryResult = new ArrayList<>();
+
+        xdmItems.forEach((item) -> {
+          xqueryResult.add(item.toString());
+        });
+        result.addResult(muleFile.getFileName().toString(), xQueryName, xqueryResult);
       });
     });
     return result;
@@ -204,17 +206,17 @@ public class MuleCodeChecker {
     List<Path> results = null;
     try {
       results = Files.find(Paths.get(inputPath),
-          Integer.MAX_VALUE,
-          (filePath, fileAttr) -> {
-            boolean isXml = fileAttr.isRegularFile() && filePath.getFileName().toString().toLowerCase().matches(".*\\.xml");
-            Path dir = filePath.getParent();
-            // check in both Mule3 and Mule4 dir structure
-            boolean isInMuleDir = dir.endsWith("src/main/mule") || dir.endsWith("src/main/app");
-            boolean isTarget = dir.toString().contains(FILE_SEPARATOR + "target" + FILE_SEPARATOR);
-            return isXml && isInMuleDir && !isTarget;
-          }, FileVisitOption.FOLLOW_LINKS)
-          .sorted()
-          .collect(Collectors.toList());
+              Integer.MAX_VALUE,
+              (filePath, fileAttr) -> {
+                boolean isXml = fileAttr.isRegularFile() && filePath.getFileName().toString().toLowerCase().matches(".*\\.xml");
+                Path dir = filePath.getParent();
+                // check in both Mule3 and Mule4 dir structure
+                boolean isInMuleDir = dir.endsWith("src/main/mule") || dir.endsWith("src/main/app");
+                boolean isTarget = dir.toString().contains(FILE_SEPARATOR + "target" + FILE_SEPARATOR);
+                return isXml && isInMuleDir && !isTarget;
+              }, FileVisitOption.FOLLOW_LINKS)
+              .sorted()
+              .collect(Collectors.toList());
     } catch (IOException ex) {
       throw new RuntimeException("Error finding Mule files. Please check your arguments.", ex);
     }
@@ -232,20 +234,20 @@ public class MuleCodeChecker {
   }
 
   private static String getProjectName(String inputPath) {
-      Path projectDir = Paths.get(inputPath);
-      return projectDir.getName(projectDir.getNameCount() - 1).toString();
+    Path projectDir = Paths.get(inputPath);
+    return projectDir.getName(projectDir.getNameCount() - 1).toString();
   }
 
   public static void main(String[] args) {
 
     try {
 //      MuleCodeChecker codeChecker = new MuleCodeChecker();
-    if (args[3].equals("default")){
-      args[3] = "RAW";
-    }
+      if (args[3].equals("default")) {
+        args[3] = "RAW";
+      }
       MuleCodeChecker.runCodeChecker(args);
     } catch (Exception e) {
-      System.out.println(e);
+      e.printStackTrace();
       log.debug(e.getMessage(), e);
     }
   }

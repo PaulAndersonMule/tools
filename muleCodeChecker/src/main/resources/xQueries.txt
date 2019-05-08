@@ -1,7 +1,7 @@
 "email addresses externalized",//*:to-address/string-join((../../@*:name,@value, starts-with(@value,"${")), ", ")
 "connx is TLS-enabled",//*[ends-with(local-name(), "-connection")]/string-join( ( string-join((local-name(), ../@name), " "), (not(local-name() != "request-connection" and @protocol="HTTPS") or not(not(@tlsContext)) or not(not(./*:context)))), ", ")
 "scheduler config externalized",//*:scheduler/*:scheduling-strategy/*:fixed-frequency/string-join(("-", @frequency, starts-with("$", ", ")), ",")
-"cron  config externalized",//*:scheduler/*:scheduling-strategy/*:cron/string-join(("-", @expression, starts-with("$", ", ")), ",")
+"cron  config externalized",//*:scheduler/*:scheduling-strategy/*:cron/string-join(("-", @expression, starts-with(@expression, "$")), ",")
 "cc address externalized",//*:cc-address/string-join((../../@*:name,@value, starts-with(@value,"${")), ", ")
 "request-host externalized",//*[ends-with(local-name(), "-connection")]/concat(local-name(), ", ",starts-with(@host, "$"))
 "good sub-flow name",//*:sub-flow/string-join((@name, starts-with(@name, concat(^fileName^, "_")) and not(ends-with(@name, "Flow"))), ", ")

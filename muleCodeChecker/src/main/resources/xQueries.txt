@@ -5,7 +5,7 @@
 "cc address externalized",//*:cc-address/string-join((../../@*:name,@value, starts-with(@value,"${")), ", ")
 "request-host externalized",//*[ends-with(local-name(), "-connection")]/concat(local-name(), ", ",starts-with(@host, "$"))
 "good sub-flow name",//*:sub-flow/string-join((@name, starts-with(@name, concat(^fileName^, "_")) and not(ends-with(@name, "Flow"))), ", ")
-"good flow name",//*:flow/string-join((@name, starts-with(@name, concat(^fileName^, "_")) and not(ends-with(@name, "Flow")) or ^fileName^ = ^mainFileName^), ", ")
+"good flow name",//*:flow/string-join((@name, (^fileName^ = ^mainFileName^ and ((@name = concat(^fileName^, "-main")) or (@name = concat(^fileName^, "-console")) or (ends-with(@name, concat(^fileName^, "-config")) and   (starts-with(@name, "get:") or starts-with(@name, "put:") or starts-with(@name, "post:") or starts-with(@name, "delete:") or starts-with(@name, "patch:") or starts-with(@name, "head:") or starts-with(@name, "options:"))))) or (^fileName^ != ^mainFileName^ and starts-with(@name, concat(^fileName^, "_")) and not(ends-with(@name, "Flow")))), ", ")
 "no globals in flow-files",not(/*:mule/*[local-name() != "flow" and local-name() != "sub-flow"])  or contains(^fileName^, "global")
 "passwords secure",//@password/string-join((../local-name(),.,    (. = "provided at deploy-time" or starts-with(., "${secure::"))),", ")
 "props-files environment-enabled",//*:configuration-properties/string-join((@doc:name,  (contains(@file, "${mule.env}")) or contains(@file, "-common.") ), ", ")
@@ -13,4 +13,3 @@
 "set-payload named properly",//n:set-payload/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
 "set-variable named properly",//n:set-variable/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
 "keypasswords secure",//@keyPassword/string-join((../local-name(),.,    (. = "provided at deploy-time" or starts-with(., "${secure::"))),", ")
-"main file flow name",//*:flow/string-join((@name, @name=concat(^fileName^, "-main") or @name=concat(^fileName^, "-console") or (ends-with(@name, "-config") and (starts-with(@name, "get:") or starts-with(@name, "put:") or starts-with(@name, "post:") or starts-with(@name, "delete:") or starts-with(@name, "options:") or starts-with(@name, "head:") or starts-with(@name, "patch:") )) or ^fileName^ != ^mainFileName^), ", ")

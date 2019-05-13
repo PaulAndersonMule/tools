@@ -13,3 +13,4 @@
 "set-payload named properly",//n:set-payload/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
 "set-variable named properly",//n:set-variable/string-join((@doc:name, not(starts-with(@doc:name, "Set Payload"))),", ")
 "keypasswords secure",//@keyPassword/string-join((../local-name(),.,    (. = "provided at deploy-time" or starts-with(., "${secure::"))),", ")
+"apiAutodiscovery correct", string-join((concat("", //*:autodiscovery/@apiId), (   (not(empty(//*:autodiscovery)) and    (//*:autodiscovery/@apiId="${api.autodiscoveryId}") or ^fileName^ != "global") )  ), ", ")

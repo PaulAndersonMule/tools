@@ -56,16 +56,6 @@ public class CheckResult {
       }
     }
 
-//      for (Entry<String, List<String>> resultPerXquery : results) {
-//        // for each check result per rule
-//        resultPerXquery.getValue().forEach((String singleResult) -> {
-//            String pass = singleResult.substring(singleResult.lastIndexOf(",") + 1).trim();
-//            boolean passThisOne = Boolean.valueOf(pass);
-//          sb.append(String.format("%s,%s,%s\n", resultPerFile.getKey(), resultPerXquery.getKey(), singleResult));
-//        });
-//      }
-//      sb.append("\n");
-//    };
     return String.format("%s\n^ ^ ^ final result\n%s", passed, sb.toString());
   }
 

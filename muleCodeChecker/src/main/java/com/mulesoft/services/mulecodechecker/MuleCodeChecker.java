@@ -2,16 +2,10 @@ package com.mulesoft.services.mulecodechecker;
 
 import com.pa.xpathutils.NamespaceResolverImpl;
 import com.pa.xpathutils.XPathUtils;
-import java.io.IOException;
-import java.nio.file.FileVisitOption;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.xml.xpath.XPathExpressionException;
 import net.sf.saxon.s9api.SaxonApiException;
 import net.sf.saxon.s9api.XdmItem;
@@ -32,19 +26,19 @@ import org.apache.logging.log4j.Logger;
  */
 public class MuleCodeChecker {
 
-  private static final Logger log = LogManager.getLogger(MuleCodeChecker.class);
-  private static final String FILE_SEPARATOR = System.getProperty("file.separator");
+  protected static final Logger log = LogManager.getLogger(MuleCodeChecker.class);
+  private static final String USAGE = "usage is 4 arguments: absolute path to well-formed Mule project, main APIKit XML file name|default, absolute path to XQuery rules file|default, RAW|JAVA";
 
   public MuleCodeChecker() {
   }
 
   public static CheckResult runCodeChecker(String inputPath, String mainFileName, String xQueriesFilePath, String outputFormat) {
 
-    List<Path> muleFiles = getMuleXMLFiles(inputPath);
+    List<Path> muleFiles = FileOperations.getMuleXMLFiles(inputPath);
     XQueries.initialize(xQueriesFilePath);
 
     // use project name as mainFileName if default is specified.
-    String projectName = getProjectName(inputPath);
+    String projectName = FileOperations.getProjectName(inputPath);
     if (mainFileName.equals("default")) {
       mainFileName = projectName;
     }
@@ -55,7 +49,7 @@ public class MuleCodeChecker {
 
   private static void runCodeChecker(String[] args) {
     if (args.length != 4) {
-      System.out.println("usage is 4 arguments: absolute path to well-formed Mule project, main APIKit XML file name|default, absolute path to XQuery rules file|default, RAW|JAVA");
+      System.out.println(USAGE);
     }
     CheckResult result = runCodeChecker(args[0], args[1], args[2], args[3]);
     String outputFormat = args[3];
@@ -85,11 +79,11 @@ public class MuleCodeChecker {
     CommandLine line = null;
 
     try {
-      parser.parse(options, args);
+      line = parser.parse(options, args);
     } catch (ParseException x) {
       HelpFormatter formatter = new HelpFormatter();
       formatter.printHelp(" ", options);
-      return null;
+      throw new RuntimeException("see usage messages above");
     }
 
     String inputPath = line.getOptionValue("inputPath");
@@ -156,86 +150,52 @@ public class MuleCodeChecker {
    *      value List<String> of results from running xQuery against fileName
    * </pre>
    */
-  private static CheckResult check(Collection<Path> muleFiles, String mainFileName) {
-    CheckResult result = new CheckResult();
-    muleFiles.forEach((muleFile) -> {
+  private static CheckResult check(List<Path> muleFiles, String mainFileName) {
+    CheckResult checkResult = new CheckResult();
+
+    for (Path muleFile : muleFiles) {
+      
       LinkedHashMap<String, List<String>> singleResult = new LinkedHashMap<>();
-      String xmlContents = readFileContents(muleFile);
+      String xmlContents = FileOperations.readFileContents(muleFile);
       log.debug("checking file: " + muleFile.toAbsolutePath());
 
-      NamespaceResolverImpl nsrImpl;
+      xqueryResults(checkResult, xmlContents, muleFile, mainFileName);
+    }
+    return checkResult;
+  }
+
+  private static void xqueryResults(CheckResult checkResult, String xmlContents, Path muleFile, String mainFileName) {
+    List<CheckResult> results = new ArrayList<>();
+
+    NamespaceResolverImpl nsrImpl;
+    try {
+      nsrImpl = new NamespaceResolverImpl(xmlContents);
+    } catch (XPathExpressionException ex) {
+      throw new RuntimeException(String.format("Error during processing file '%s' - invalid XML, missing namespace-declaration etc.)", muleFile), ex);
+    }
+    
+    for (String xQueryName : XQueries.keySet()) {
+
+      String xQuery = XQueries.get(xQueryName);
+      // pre-process the XQuery to replace the file name
+      String fileNameWithoutExt = StringUtils.removeEndIgnoreCase(muleFile.getFileName().toString(), ".xml");
+      xQuery = XQueries.format(xQuery, fileNameWithoutExt, mainFileName);
+      log.debug("pre-processed XQuery: " + xQuery);
+
+      // run the XQuery against the XML file content
+      List<XdmItem> xdmItems;
       try {
-        nsrImpl = new NamespaceResolverImpl(xmlContents);
-      } catch (XPathExpressionException ex) {
-        throw new RuntimeException(String.format("Error during processing file '%s' - invalid XML, missing namespace-declaration etc.)", muleFile), ex);
+        xdmItems = XPathUtils.evaluate(xQuery, xmlContents, nsrImpl);
+      } catch (SaxonApiException ex) {
+        throw new RuntimeException(String.format("Error occurred when running XQuery check for query '%s' (%s) ", xQueryName, XQueries.get(xQueryName)), ex);
       }
+      List<String> xqueryResult = new ArrayList<>();
 
-      XQueries.keySet().forEach((xQueryName) -> {
-        String xQuery = XQueries.get(xQueryName);
-        // pre-process the XQuery to replace the file name
-        String fileNameWithoutExt = StringUtils.removeEndIgnoreCase(muleFile.getFileName().toString(), ".xml");
-        xQuery = XQueries.format(xQuery, fileNameWithoutExt, mainFileName);
-        log.debug("pre-processed XQuery: " + xQuery);
-
-        // run the XQuery against the XML file content
-        List<XdmItem> xdmItems;
-        try {
-          xdmItems = XPathUtils.evaluate(xQuery, xmlContents, nsrImpl);
-        } catch (SaxonApiException ex) {
-          throw new RuntimeException(String.format("Error occurred when running XQuery check for query '%s' (%s) ", xQueryName, XQueries.get(xQueryName)), ex);
-        }
-        List<String> xqueryResult = new ArrayList<>();
-
-        xdmItems.forEach((item) -> {
-          xqueryResult.add(item.toString());
-        });
-        result.addResult(muleFile.getFileName().toString(), xQueryName, xqueryResult);
+      xdmItems.forEach((item) -> {
+        xqueryResult.add(item.toString());
       });
-    });
-    return result;
-  }
-
-  private static List<Path> getMuleXMLFiles(String inputPath) {
-    Path inputDir = Paths.get(inputPath);
-    if (!Files.exists(inputDir)) {
-      throw new IllegalArgumentException("Specified path does not exist: " + inputPath);
+      checkResult.addResult(muleFile.getFileName().toString(), xQueryName, xqueryResult);
     }
-    if (!Files.isDirectory(inputDir)) {
-      throw new IllegalArgumentException("Not a directory: " + inputPath);
-    }
-    List<Path> results = null;
-    try {
-      results = Files.find(Paths.get(inputPath),
-              Integer.MAX_VALUE,
-              (filePath, fileAttr) -> {
-                boolean isXml = fileAttr.isRegularFile() && filePath.getFileName().toString().toLowerCase().matches(".*\\.xml");
-                Path dir = filePath.getParent();
-                // check in both Mule3 and Mule4 dir structure
-                boolean isInMuleDir = dir.endsWith("src/main/mule") || dir.endsWith("src/main/app");
-                boolean isTarget = dir.toString().contains(FILE_SEPARATOR + "target" + FILE_SEPARATOR);
-                return isXml && isInMuleDir && !isTarget;
-              }, FileVisitOption.FOLLOW_LINKS)
-              .sorted()
-              .collect(Collectors.toList());
-    } catch (IOException ex) {
-      throw new RuntimeException("Error finding Mule files. Please check your arguments.", ex);
-    }
-    log.debug("found Mule XML files to be examined: " + results);
-    return results;
-  }
-
-  private static String readFileContents(Path muleFile) {
-    try {
-      List<String> lines = Files.readAllLines(muleFile);
-      return String.join("", lines);
-    } catch (IOException ioe) {
-      throw new RuntimeException("Cannot read file: " + muleFile, ioe);
-    }
-  }
-
-  private static String getProjectName(String inputPath) {
-    Path projectDir = Paths.get(inputPath);
-    return projectDir.getName(projectDir.getNameCount() - 1).toString();
   }
 
   public static void main(String[] args) {

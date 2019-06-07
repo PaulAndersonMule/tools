@@ -2210,16 +2210,18 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
             jtextComponent.getActionMap().put("undo", new AbstractAction("undo") {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
-                    try {
-                        if (manager.canUndo()) {
+                    if (manager.canUndo()) {
+                        try {
                             manager.undo();
+                        } catch (CannotUndoException cannotUndoException) {
+                            reportError("Cannot undo " + cannotUndoException.getMessage(), txtErrorLog);
                         }
-                    } catch (CannotUndoException ignore) {
-                        reportError("No more undos", txtErrorLog);
                     }
                 }
             });
-        KeyStroke undoKeyStroke = getUndoKeyStroke();
+
+            // bind undo keystroke
+            KeyStroke undoKeyStroke = getUndoKeyStroke();
             if (undoKeyStroke != null) {
                 jtextComponent.getInputMap().put(undoKeyStroke, "undo");
             }

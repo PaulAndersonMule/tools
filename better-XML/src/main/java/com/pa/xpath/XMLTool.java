@@ -28,17 +28,23 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import javax.swing.AbstractAction;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.xpath.XPathExpressionException;
 import org.apache.commons.io.FileUtils;
@@ -100,7 +106,8 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		kit.setStyle(XMLStyleConstants.COMMENT, new Color(153, 153, 153), Font.PLAIN);
 		kit.setStyle(XMLStyleConstants.CDATA, new Color(0, 0, 0), Font.PLAIN);
 		kit.setStyle(XMLStyleConstants.SPECIAL, new Color(0, 0, 0), Font.PLAIN);
-
+                enableUndo(jeditorXPath);
+                enableUndo(jeditorXSLT);
 		cbRealtimeXML.addItemListener(this);
 		cbAutoXPath.addItemListener(this);
 		jtreeSourceXML.setModel(new DefaultTreeModel(null));
@@ -2195,4 +2202,38 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		}
 	}
 
+        private void enableUndo(JTextComponent jtextComponent) {
+            UndoManager manager = new UndoManager();
+            Document document = jtextComponent.getDocument();
+            document.addUndoableEditListener(event -> manager.addEdit(event.getEdit()));
+
+            jtextComponent.getActionMap().put("undo", new AbstractAction("undo") {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    try {
+                        if (manager.canUndo()) {
+                            manager.undo();
+                        }
+                    } catch (CannotUndoException ignore) {
+                        reportError("No more undos", txtErrorLog);
+                    }
+                }
+            });
+        KeyStroke undoKeyStroke = getUndoKeyStroke();
+            if (undoKeyStroke != null) {
+                jtextComponent.getInputMap().put(undoKeyStroke, "undo");
+            }
+        }
+
+        private KeyStroke getUndoKeyStroke() {
+            String osName = System.getProperty("os.name").toLowerCase();
+            if (osName.contains("mac")) {
+                return KeyStroke.getKeyStroke("meta Z");
+            } else if (osName.contains("win")) {
+                return KeyStroke.getKeyStroke("control Z");
+            } else {
+                reportError("Undo in your OS is not supported. You are on your own.", txtErrorLog);
+                return null;
+            }
+        }
 }

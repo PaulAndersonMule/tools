@@ -1,0 +1,7 @@
+= Better-XML
+
+libs for XML, XPath2 and XSLT2 tools for anyone who
+
+* needs more than the carpal-tunnel trials that Eclipse and Netbeans offer
+* doesn't want to pay for XMLSpy or Oxygen
+

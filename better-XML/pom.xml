@@ -121,5 +121,10 @@
       <artifactId>bounce</artifactId>
       <version>0.18</version>
     </dependency>
+    <dependency>
+      <groupId>com.pa</groupId>
+      <artifactId>xml-libs</artifactId>
+      <version>1.0</version>
+    </dependency>
   </dependencies>
 </project>

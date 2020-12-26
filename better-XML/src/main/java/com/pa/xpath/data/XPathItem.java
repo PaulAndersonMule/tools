@@ -33,7 +33,7 @@ public class XPathItem implements Serializable, Comparable<XPathItem>{
     @Column(name = "XPATH", nullable = false, length = 1000)
     private String xpath;
     @JoinColumn(name = "LIBRARY_SECTION", referencedColumnName = "SECTION_NAME", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private XPathLibrarySection xpathLibrarySection1;
 
     public XPathItem() {

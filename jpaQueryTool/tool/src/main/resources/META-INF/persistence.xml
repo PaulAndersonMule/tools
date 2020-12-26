@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">`
+	<persistence-unit name="notificationPU" transaction-type="RESOURCE_LOCAL">
+    <class>com.mulesoft.services.notification.dataobjects.Notification</class>
+    <class>com.mulesoft.services.notification.dataobjects.NotificationClass</class>
+    <class>com.mulesoft.services.notification.dataobjects.NotificationUser</class>
+    <class>com.mulesoft.services.merchantreferraljpa.objects.Merchant</class>
+    <class>com.mulesoft.services.merchantreferraljpa.objects.MerchantAddress</class>
+    <class>com.mulesoft.services.merchantreferraljpa.objects.MerchantAddressType</class>
+    <class>com.mulesoft.services.merchantreferraljpa.objects.MerchantType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblAddress</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblAddressType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblBBBRatingType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblClassCode</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblClassServiceLog</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblContact</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblContactType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblDocument</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblDocumentType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblDoingBusinessAs</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblEmail</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblEmailType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblFeeSchedule</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblFeeScheduleDetail</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblMasterGroup</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblMerchant</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblMerchantStatus</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblMerchantStatusType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblNote</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblOFACRatingType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblReview</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblReviewSchedule</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblReviewScheduleType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblSource</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblStateToFeeSchedule</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblStore</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblStoreStatus</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblStoreStatusType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblTINType</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblTax</class>
+    <class>com.onemain.merchantsvc.merchantreferral.MERtblTaxClassification</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <validation-mode>NONE</validation-mode>
+  </persistence-unit>
+  <persistence-unit name="xPU" transaction-type="RESOURCE_LOCAL">
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <validation-mode>NONE</validation-mode>
+  </persistence-unit>
+
+</persistence>

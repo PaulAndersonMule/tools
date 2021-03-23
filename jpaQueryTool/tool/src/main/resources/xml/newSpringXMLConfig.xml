@@ -1,0 +1,118 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:tx="http://www.springframework.org/schema/tx"
+
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+">
+	<bean id="appProperties"
+				class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jpa.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" name="jpaDialect" scope="singleton" />
+
+<!--	<bean id="jpaVendor" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" name="jpaVendor" scope="singleton">
+		<property name="generateDdl" value="false" />
+		<property name="showSql" value="false" />
+	</bean>-->
+
+	<bean id="eclipseLinkVendorMSSQL" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" name="eclipseLinkVendorMSSQL" scope="singleton">
+		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.SQLServerPlatform" />
+		<property name="generateDdl" value="false" />
+		<property name="showSql" value="false" />
+	</bean>
+
+	<bean id="eclipseLinkVendorDerby" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" name="eclipseLinkVendorDerby" scope="singleton">
+		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.DerbyPlatform" />
+		<property name="generateDdl" value="false" />
+		<property name="showSql" value="false" />
+	</bean>
+
+	<bean id="eclipseLinkVendorOracle" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" name="eclipseLinkVendorOracle" scope="singleton">
+		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.OraclePlatform" />
+		<property name="generateDdl" value="false" />
+		<property name="showSql" value="false" />
+	</bean>
+
+	<bean id="eclipseLinkVendorPostgres" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" name="eclipseLinkVendorPostgres" scope="singleton">
+		<property name="databasePlatform" value="org.eclipse.persistence.platform.database.Postgresql" />
+		<property name="generateDdl" value="false" />
+		<property name="showSql" value="false" />
+	</bean>
+
+
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManagerNotif" name="transactionManagerNotif" scope="singleton">
+		<property name="entityManagerFactory" ref="entityManagerFactoryNotif" />
+	</bean>
+
+	<bean id="demoDataSource" name="demoDataSource" class="org.apache.commons.dbcp2.BasicDataSource" scope="singleton">
+		<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+			<property name="url" value="${demodb.url}" />
+		<property name="username" value="${demodb.username}" />
+		<property name="password" value="${demodb.password}" />
+		<property name="maxTotal" value="5" />
+		<property name="maxIdle" value="5" />
+		<property name="minIdle" value="5" />
+		<property name="initialSize" value="5" />
+		<property name="maxWaitMillis" value="1000" />
+		<property name="timeBetweenEvictionRunsMillis" value="15000" />
+		<property name="testOnCreate" value="false" />
+		<property name="testOnBorrow" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+	</bean>
+
+	<bean id="dataSourceX" name="dataSourceX" class="org.apache.commons.dbcp2.BasicDataSource" scope="singleton">
+		<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+			<property name="url" value="jdbc:derby://localhost:1527/xpath_library" />
+		<property name="username" value="xpath_library_user" />
+		<property name="password" value="password" />
+		<property name="maxTotal" value="5" />
+		<property name="maxIdle" value="5" />
+		<property name="minIdle" value="5" />
+		<property name="initialSize" value="5" />
+		<property name="maxWaitMillis" value="1000" />
+		<property name="timeBetweenEvictionRunsMillis" value="15000" />
+		<property name="testOnCreate" value="false" />
+		<property name="testOnBorrow" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+	</bean>
+
+	<bean id="entityManagerFactoryNotif" name="entityManagerFactoryNotif" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" scope="singleton">
+		<property name="dataSource" ref="demoDataSource" />
+		<property name="persistenceUnitName" value="notificationPU" />
+		<property name="jpaDialect" ref="jpaDialect" />
+		<property name="jpaVendorAdapter" ref="eclipseLinkVendorDerby" />
+		<property name="packagesToScan" value="domain" />
+		<property name="jpaPropertyMap">
+			<map>
+				<entry key="eclipselink.weaving" value="false" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="entityManagerFactoryX" name="entityManagerFactoryX" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" scope="singleton">
+		<property name="dataSource" ref="dataSourceX" />
+		<property name="persistenceUnitName" value="xPU" />
+		<property name="jpaDialect" ref="jpaDialect" />
+		<property name="jpaVendorAdapter" ref="eclipseLinkVendorDerby" />
+		<property name="packagesToScan" value="domain" />
+		<property name="jpaPropertyMap">
+			<map>
+				<entry key="eclipselink.weaving" value="false" />
+			</map>
+		</property>
+	</bean>
+
+
+
+	<bean id="PersistenceManager" name="PersistenceManager" class="com.panderson.jpatool.PersistenceManager" scope="singleton" />
+
+	<tx:annotation-driven proxy-target-class="true" />
+</beans>

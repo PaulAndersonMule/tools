@@ -81,10 +81,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.0</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
@@ -92,12 +91,12 @@
       <version>2.4</version>
     </dependency>
     <dependency>
-      <groupId>batik</groupId>
+      <groupId>org.apache.xmlgraphics</groupId>
       <artifactId>batik-gui-util</artifactId>
       <version>1.7</version>
     </dependency>
     <dependency>
-      <groupId>batik</groupId>
+      <groupId>org.apache.xmlgraphics</groupId>
       <artifactId>batik-xml</artifactId>
       <version>1.7</version>
     </dependency>
@@ -114,7 +113,7 @@
     <dependency>
       <groupId>org.eclipse.persistence</groupId>
       <artifactId>eclipselink</artifactId>
-      <version>2.6.4</version>
+      <version>2.7.7</version>
     </dependency>
     <dependency>
       <groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
@@ -124,7 +123,7 @@
     <dependency>
       <groupId>com.pa</groupId>
       <artifactId>xml-libs</artifactId>
-      <version>1.0</version>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 </project>

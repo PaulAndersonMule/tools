@@ -8,11 +8,11 @@
     <class>com.pa.xpath.data.XSLTItem</class>
     <class>com.pa.xpath.data.XPathItem</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby:/derbyDBs/xpath_library"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby:/Users/paul.anderson/DerbyDBs/xpath_library"/>
       <property name="javax.persistence.jdbc.user" value="xpath_library_user"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
       <property name="javax.persistence.jdbc.password" value="password"/>
-			<property name="eclipselink.target-database" value="Derby"/>
+      <property name="eclipselink.target-database" value="Derby"/>
     </properties>
   </persistence-unit>
 </persistence>

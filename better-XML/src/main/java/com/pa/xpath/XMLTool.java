@@ -28,17 +28,23 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import javax.swing.AbstractAction;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.xpath.XPathExpressionException;
 import org.apache.commons.io.FileUtils;
@@ -100,7 +106,8 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		kit.setStyle(XMLStyleConstants.COMMENT, new Color(153, 153, 153), Font.PLAIN);
 		kit.setStyle(XMLStyleConstants.CDATA, new Color(0, 0, 0), Font.PLAIN);
 		kit.setStyle(XMLStyleConstants.SPECIAL, new Color(0, 0, 0), Font.PLAIN);
-
+                enableUndo(jeditorXPath);
+                enableUndo(jeditorXSLT);
 		cbRealtimeXML.addItemListener(this);
 		cbAutoXPath.addItemListener(this);
 		jtreeSourceXML.setModel(new DefaultTreeModel(null));
@@ -198,1071 +205,1071 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 	 * Editor.
 	 */
 	@SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+  private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jEditorPane2 = new javax.swing.JEditorPane();
-        jFrameAbout = new javax.swing.JFrame();
-        jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        grpChildrenOrSiblings = new javax.swing.ButtonGroup();
-        desktopPane = new javax.swing.JDesktopPane();
-        jframeSourceXML = new javax.swing.JInternalFrame();
-        jPanel8 = new javax.swing.JPanel();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jtreeSourceXML = new javax.swing.JTree();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jeditorPaneXMLText = new javax.swing.JEditorPane();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jeditorPaneSelectedNode = new javax.swing.JEditorPane();
-        txtSelectedNodeXPath = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        txtTreeSearch = new javax.swing.JTextField();
-        btnTreeSearch = new javax.swing.JButton();
-        cbFullStringMatch = new javax.swing.JCheckBox();
-        radioChildren = new javax.swing.JRadioButton();
-        radioSiblings = new javax.swing.JRadioButton();
-        btnProcessXMLEdits = new javax.swing.JButton();
-        cbRealtimeXML = new javax.swing.JCheckBox();
-        btnCleanNamespaces = new javax.swing.JButton();
-        cbUseDefaultNameSpaceName = new javax.swing.JCheckBox();
-        jframeXPath = new javax.swing.JInternalFrame();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jeditorXPathResults = new javax.swing.JEditorPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jeditorXPath = new javax.swing.JTextArea();
-        cbAutoXPath = new javax.swing.JCheckBox();
-        btnXPath = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jSplitPane3 = new javax.swing.JSplitPane();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jeditorXSLT = new javax.swing.JEditorPane();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jeditorTransformedXML = new javax.swing.JEditorPane();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        btnLoadXSLT = new javax.swing.JButton();
-        btnInsertNamespaces = new javax.swing.JButton();
-        btnFormatXSLT = new javax.swing.JButton();
-        jiframeConsole = new javax.swing.JInternalFrame();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        txtErrorLog = new javax.swing.JEditorPane();
-        btnClearConsole = new javax.swing.JButton();
-        MainTools = new javax.swing.JInternalFrame();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel9 = new javax.swing.JPanel();
-        jPanelSelectedItemDetails = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        txtSectionName = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtXPathName = new javax.swing.JTextField();
-        btnSaveEditedXPathItem = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jeditorPaneSelectedXPath = new javax.swing.JEditorPane();
-        btnRevertLibraryName = new javax.swing.JButton();
-        btnRevertXPathItemName = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        lstXPathSections = new javax.swing.JList();
-        btnDeleteSection = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        lstXPaths = new javax.swing.JList();
-        btnDeleteXPathItem = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        lstXSLTLibrary = new javax.swing.JList<>();
-        btnDeleteXSLTLibrary = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        lstXSLTItems = new javax.swing.JList<com.pa.xpath.data.XSLTItem>();
-        btnDeleteXSLTItem = new javax.swing.JButton();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        txtXSLTSectionName = new javax.swing.JTextField();
-        btnRevertXSLTLibraryName = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        txtXSLTName = new javax.swing.JTextField();
-        btnSaveXSLTEdits = new javax.swing.JButton();
-        btnRevertXSLTItemName = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        aboutMenuItem = new javax.swing.JMenuItem();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    jEditorPane2 = new javax.swing.JEditorPane();
+    jFrameAbout = new javax.swing.JFrame();
+    jLabel8 = new javax.swing.JLabel();
+    jButton1 = new javax.swing.JButton();
+    grpChildrenOrSiblings = new javax.swing.ButtonGroup();
+    desktopPane = new javax.swing.JDesktopPane();
+    jframeSourceXML = new javax.swing.JInternalFrame();
+    jPanel8 = new javax.swing.JPanel();
+    jSplitPane1 = new javax.swing.JSplitPane();
+    jScrollPane8 = new javax.swing.JScrollPane();
+    jtreeSourceXML = new javax.swing.JTree();
+    jTabbedPane3 = new javax.swing.JTabbedPane();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    jeditorPaneXMLText = new javax.swing.JEditorPane();
+    jScrollPane11 = new javax.swing.JScrollPane();
+    jeditorPaneSelectedNode = new javax.swing.JEditorPane();
+    txtSelectedNodeXPath = new javax.swing.JTextField();
+    jLabel6 = new javax.swing.JLabel();
+    jPanel6 = new javax.swing.JPanel();
+    txtTreeSearch = new javax.swing.JTextField();
+    btnTreeSearch = new javax.swing.JButton();
+    cbFullStringMatch = new javax.swing.JCheckBox();
+    radioChildren = new javax.swing.JRadioButton();
+    radioSiblings = new javax.swing.JRadioButton();
+    btnProcessXMLEdits = new javax.swing.JButton();
+    cbRealtimeXML = new javax.swing.JCheckBox();
+    btnCleanNamespaces = new javax.swing.JButton();
+    cbUseDefaultNameSpaceName = new javax.swing.JCheckBox();
+    jframeXPath = new javax.swing.JInternalFrame();
+    jTabbedPane1 = new javax.swing.JTabbedPane();
+    jSplitPane2 = new javax.swing.JSplitPane();
+    jScrollPane4 = new javax.swing.JScrollPane();
+    jeditorXPathResults = new javax.swing.JEditorPane();
+    jPanel1 = new javax.swing.JPanel();
+    jLabel1 = new javax.swing.JLabel();
+    jScrollPane5 = new javax.swing.JScrollPane();
+    jeditorXPath = new javax.swing.JTextArea();
+    cbAutoXPath = new javax.swing.JCheckBox();
+    btnXPath = new javax.swing.JButton();
+    jPanel5 = new javax.swing.JPanel();
+    jSplitPane3 = new javax.swing.JSplitPane();
+    jScrollPane9 = new javax.swing.JScrollPane();
+    jeditorXSLT = new javax.swing.JEditorPane();
+    jScrollPane10 = new javax.swing.JScrollPane();
+    jeditorTransformedXML = new javax.swing.JEditorPane();
+    jLabel10 = new javax.swing.JLabel();
+    jLabel11 = new javax.swing.JLabel();
+    btnLoadXSLT = new javax.swing.JButton();
+    btnInsertNamespaces = new javax.swing.JButton();
+    btnFormatXSLT = new javax.swing.JButton();
+    jiframeConsole = new javax.swing.JInternalFrame();
+    jScrollPane13 = new javax.swing.JScrollPane();
+    txtErrorLog = new javax.swing.JEditorPane();
+    btnClearConsole = new javax.swing.JButton();
+    MainTools = new javax.swing.JInternalFrame();
+    jTabbedPane2 = new javax.swing.JTabbedPane();
+    jPanel9 = new javax.swing.JPanel();
+    jPanelSelectedItemDetails = new javax.swing.JPanel();
+    jLabel5 = new javax.swing.JLabel();
+    txtSectionName = new javax.swing.JTextField();
+    jLabel4 = new javax.swing.JLabel();
+    txtXPathName = new javax.swing.JTextField();
+    btnSaveEditedXPathItem = new javax.swing.JButton();
+    jScrollPane7 = new javax.swing.JScrollPane();
+    jeditorPaneSelectedXPath = new javax.swing.JEditorPane();
+    btnRevertLibraryName = new javax.swing.JButton();
+    btnRevertXPathItemName = new javax.swing.JButton();
+    jPanel2 = new javax.swing.JPanel();
+    jLabel2 = new javax.swing.JLabel();
+    jScrollPane3 = new javax.swing.JScrollPane();
+    lstXPathSections = new javax.swing.JList();
+    btnDeleteSection = new javax.swing.JButton();
+    jPanel3 = new javax.swing.JPanel();
+    jLabel3 = new javax.swing.JLabel();
+    jScrollPane6 = new javax.swing.JScrollPane();
+    lstXPaths = new javax.swing.JList();
+    btnDeleteXPathItem = new javax.swing.JButton();
+    jPanel11 = new javax.swing.JPanel();
+    jPanel4 = new javax.swing.JPanel();
+    jLabel7 = new javax.swing.JLabel();
+    jScrollPane12 = new javax.swing.JScrollPane();
+    lstXSLTLibrary = new javax.swing.JList<>();
+    btnDeleteXSLTLibrary = new javax.swing.JButton();
+    jPanel7 = new javax.swing.JPanel();
+    jLabel9 = new javax.swing.JLabel();
+    jScrollPane14 = new javax.swing.JScrollPane();
+    lstXSLTItems = new javax.swing.JList<com.pa.xpath.data.XSLTItem>();
+    btnDeleteXSLTItem = new javax.swing.JButton();
+    jPanel10 = new javax.swing.JPanel();
+    jLabel12 = new javax.swing.JLabel();
+    txtXSLTSectionName = new javax.swing.JTextField();
+    btnRevertXSLTLibraryName = new javax.swing.JButton();
+    jLabel13 = new javax.swing.JLabel();
+    txtXSLTName = new javax.swing.JTextField();
+    btnSaveXSLTEdits = new javax.swing.JButton();
+    btnRevertXSLTItemName = new javax.swing.JButton();
+    jLabel14 = new javax.swing.JLabel();
+    menuBar = new javax.swing.JMenuBar();
+    fileMenu = new javax.swing.JMenu();
+    openMenuItem = new javax.swing.JMenuItem();
+    exitMenuItem = new javax.swing.JMenuItem();
+    helpMenu = new javax.swing.JMenu();
+    aboutMenuItem = new javax.swing.JMenuItem();
 
-        jScrollPane2.setViewportView(jEditorPane2);
+    jScrollPane2.setViewportView(jEditorPane2);
 
-        jFrameAbout.setResizable(false);
+    jFrameAbout.setResizable(false);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("by Paul Anderson");
+    jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+    jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel8.setText("by Paul Anderson");
 
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+    jButton1.setText("OK");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
 
-        javax.swing.GroupLayout jFrameAboutLayout = new javax.swing.GroupLayout(jFrameAbout.getContentPane());
-        jFrameAbout.getContentPane().setLayout(jFrameAboutLayout);
-        jFrameAboutLayout.setHorizontalGroup(
-            jFrameAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFrameAboutLayout.createSequentialGroup()
-                .addGroup(jFrameAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jFrameAboutLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jFrameAboutLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jFrameAboutLayout.setVerticalGroup(
-            jFrameAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFrameAboutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
+    javax.swing.GroupLayout jFrameAboutLayout = new javax.swing.GroupLayout(jFrameAbout.getContentPane());
+    jFrameAbout.getContentPane().setLayout(jFrameAboutLayout);
+    jFrameAboutLayout.setHorizontalGroup(
+      jFrameAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jFrameAboutLayout.createSequentialGroup()
+        .addGroup(jFrameAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jFrameAboutLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(jFrameAboutLayout.createSequentialGroup()
+            .addGap(61, 61, 61)
+            .addComponent(jButton1)))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jFrameAboutLayout.setVerticalGroup(
+      jFrameAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jFrameAboutLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jLabel8)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jButton1)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+    desktopPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+    jframeSourceXML.setIconifiable(true);
+    jframeSourceXML.setMaximizable(true);
+    jframeSourceXML.setResizable(true);
+    jframeSourceXML.setTitle("source XML");
+    jframeSourceXML.setVisible(true);
+
+    jSplitPane1.setDividerLocation(400);
+
+    jtreeSourceXML.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+    jtreeSourceXML.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+      public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+        jtreeSourceXMLValueChanged(evt);
+      }
+    });
+    jScrollPane8.setViewportView(jtreeSourceXML);
+
+    jSplitPane1.setRightComponent(jScrollPane8);
+
+    jeditorPaneXMLText.setEditorKit(kit);
+    jeditorPaneXMLText.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+    jeditorPaneXMLText.setText("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<about>      \n   <instructions value=\"File...Open to choose file containing XML (file-types are not filtered) Alternatively, paste your XML in the text-pane on the 'full XML' tab of the 'source XML' main-window\"/>      \n   <XPath>           \n      <item value=\"type a valid XPath expression in the XPath tab (see Real-time XPath and XSLT frame).\"/>           \n      <item value=\"have the 'auto?' box in the checked state to see XPath results as you type.\"/>           \n      <item value=\"Sometimes it's not helpful to have 'auto?' turned on because with each error due to partial  XPath-expressions you lose sight of any results thus far.\"/>           \n      <library>                \n         <item value=\"Often-used XPath expressions can be saved in the library - create a new library just by typing in a new name (not already used), name the expression, type the expression in the text-area below the 'save...' button, then click the 'save...' button iteself.\"/>                \n         <item value=\"To apply a library XPath expression to the XML in the 'full XML' window, just click on the library, then on the expression name. XPath results show in the XPath tab of the 'Real-time XPath and XSLT' frame.\"/>                \n         <item value=\"To see the XPath of a node, click on it in the XML-tree; to see the source-XML for the selected-node, view the 'selected node' tab.\"/>           \n      </library>      \n   </XPath>      \n   <XSLT>           \n      <item value=\"XSLT processes in real-time - operates on the XML that is in the text-pane of the 'full XML' tab. Either type in or paste XSLT into the XSLT pane, or load XSLT from a file. If any XSLT expressions use namespaces (other than 'xsl'), those namespaces need to be declared in the XSLT to prevent errors. To discover and insert the namespaces, click an appropriate location in the XSLT 'xsl:stylesheet' element to locate the cursor there, then click 'insert namespaces' button.\"/>           \n      <item value=\"'format' cleans up the XSLT format, but will fail if the XSLT is not well-formed.\"/>      \n   </XSLT> \n</about>");
+    jeditorPaneXMLText.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        jeditorPaneXMLTextKeyReleased(evt);
+      }
+    });
+    jScrollPane1.setViewportView(jeditorPaneXMLText);
+
+    jTabbedPane3.addTab("all", jScrollPane1);
+
+    jeditorPaneSelectedNode.setEditorKit(new XMLEditorKit());
+    jeditorPaneSelectedNode.setEditable(false);
+    jeditorPaneSelectedNode.setEditorKit(kit);
+    jeditorPaneSelectedNode.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
+    jScrollPane11.setViewportView(jeditorPaneSelectedNode);
+
+    jTabbedPane3.addTab("selected", jScrollPane11);
+
+    jSplitPane1.setLeftComponent(jTabbedPane3);
+
+    txtSelectedNodeXPath.setEditable(false);
+    txtSelectedNodeXPath.setBackground(new java.awt.Color(238, 238, 238));
+    txtSelectedNodeXPath.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+    jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+    jLabel6.setText("XPath");
+
+    jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+    txtTreeSearch.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+    btnTreeSearch.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    btnTreeSearch.setText("search");
+    btnTreeSearch.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnTreeSearchActionPerformed(evt);
+      }
+    });
+
+    cbFullStringMatch.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    cbFullStringMatch.setText("whole string?");
+
+    grpChildrenOrSiblings.add(radioChildren);
+    radioChildren.setSelected(true);
+    radioChildren.setText("children?");
+
+    grpChildrenOrSiblings.add(radioSiblings);
+    radioSiblings.setText("siblings?");
+
+    javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+    jPanel6.setLayout(jPanel6Layout);
+    jPanel6Layout.setHorizontalGroup(
+      jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel6Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(txtTreeSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnTreeSearch)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(cbFullStringMatch)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(radioChildren)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(radioSiblings)
+        .addContainerGap())
+    );
+    jPanel6Layout.setVerticalGroup(
+      jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel6Layout.createSequentialGroup()
+        .addGap(6, 6, 6)
+        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(txtTreeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(btnTreeSearch)
+          .addComponent(cbFullStringMatch)
+          .addComponent(radioChildren)
+          .addComponent(radioSiblings))
+        .addGap(6, 6, 6))
+    );
+
+    btnProcessXMLEdits.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    btnProcessXMLEdits.setText("process changed XML");
+    btnProcessXMLEdits.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnProcessXMLEditsActionPerformed(evt);
+      }
+    });
+
+    cbRealtimeXML.setText("real-time XML processing");
+
+    btnCleanNamespaces.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    btnCleanNamespaces.setText("clean namespaces");
+    btnCleanNamespaces.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        btnCleanNamespacesMouseReleased(evt);
+      }
+    });
+
+    cbUseDefaultNameSpaceName.setText("use default NS name in XPath?");
+
+    javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+    jPanel8.setLayout(jPanel8Layout);
+    jPanel8Layout.setHorizontalGroup(
+      jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel8Layout.createSequentialGroup()
+        .addGap(3, 3, 3)
+        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addGroup(jPanel8Layout.createSequentialGroup()
+            .addComponent(jLabel6)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(txtSelectedNodeXPath))
+          .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(jPanel8Layout.createSequentialGroup()
+            .addComponent(btnProcessXMLEdits)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(btnCleanNamespaces)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(cbRealtimeXML)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(cbUseDefaultNameSpaceName)
+            .addGap(0, 0, Short.MAX_VALUE)))
+        .addGap(3, 3, 3))
+    );
+    jPanel8Layout.setVerticalGroup(
+      jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel8Layout.createSequentialGroup()
+        .addGap(3, 3, 3)
+        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(txtSelectedNodeXPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel6))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(5, 5, 5)
+        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(btnProcessXMLEdits)
+          .addComponent(cbRealtimeXML)
+          .addComponent(btnCleanNamespaces)
+          .addComponent(cbUseDefaultNameSpaceName))
+        .addGap(6, 6, 6)
+        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+        .addGap(3, 3, 3))
+    );
+
+    javax.swing.GroupLayout jframeSourceXMLLayout = new javax.swing.GroupLayout(jframeSourceXML.getContentPane());
+    jframeSourceXML.getContentPane().setLayout(jframeSourceXMLLayout);
+    jframeSourceXMLLayout.setHorizontalGroup(
+      jframeSourceXMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jframeSourceXMLLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    jframeSourceXMLLayout.setVerticalGroup(
+      jframeSourceXMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jframeSourceXMLLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    desktopPane.add(jframeSourceXML);
+    jframeSourceXML.setBounds(0, 0, 950, 580);
+
+    jframeXPath.setIconifiable(true);
+    jframeXPath.setMaximizable(true);
+    jframeXPath.setResizable(true);
+    jframeXPath.setTitle("Real-time XPath and XSLT");
+    jframeXPath.setVisible(true);
+
+    jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+    jeditorXPathResults.setEditable(false);
+    jeditorXPathResults.setEditorKit(kit);
+    jeditorXPathResults.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+    jScrollPane4.setViewportView(jeditorXPathResults);
+
+    jSplitPane2.setBottomComponent(jScrollPane4);
+
+    jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+    jLabel1.setText("XPath");
+
+    jeditorXPath.setColumns(20);
+    jeditorXPath.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+    jeditorXPath.setLineWrap(true);
+    jeditorXPath.setRows(5);
+    jeditorXPath.setText("/");
+    jeditorXPath.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        jeditorXPathKeyReleased(evt);
+      }
+    });
+    jScrollPane5.setViewportView(jeditorXPath);
+
+    cbAutoXPath.setSelected(true);
+    cbAutoXPath.setText("auto?");
+    cbAutoXPath.setToolTipText("check this to get real-time XPath2.0 results"); // NOI18N
+    cbAutoXPath.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbAutoXPathActionPerformed(evt);
+      }
+    });
+
+    btnXPath.setText("XPath");
+    btnXPath.setEnabled(false);
+    btnXPath.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnXPathActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(cbAutoXPath)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(8, 8, 8)
+            .addComponent(jLabel1))
+          .addComponent(btnXPath))
+        .addGap(10, 10, 10)
+        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(22, 22, 22)
+        .addComponent(jLabel1)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(cbAutoXPath)
+        .addGap(11, 11, 11)
+        .addComponent(btnXPath)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+    );
+
+    jSplitPane2.setLeftComponent(jPanel1);
+
+    jTabbedPane1.addTab("XPath", jSplitPane2);
+
+    jSplitPane3.setDividerLocation(300);
+
+    jeditorXSLT.setEditorKit(kit);
+    jeditorXSLT.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
+    jeditorXSLT.setText("<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n<xsl:output method=\"xml\" indent=\"yes\"/>\n\n<xsl:template match=\"/\">\n  <xsl:copy-of select=\".\"/>\n</xsl:template>\n\n</xsl:stylesheet>");
+    jeditorXSLT.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        jeditorXSLTKeyReleased(evt);
+      }
+    });
+    jScrollPane9.setViewportView(jeditorXSLT);
+
+    jSplitPane3.setLeftComponent(jScrollPane9);
+
+    jeditorTransformedXML.setEditable(false);
+    jeditorTransformedXML.setEditorKit(kit);
+    jeditorTransformedXML.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
+    jScrollPane10.setViewportView(jeditorTransformedXML);
+
+    jSplitPane3.setRightComponent(jScrollPane10);
+
+    jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    jLabel10.setText("XSLT");
+
+    jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    jLabel11.setText("Transformed XML   ");
+
+    btnLoadXSLT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    btnLoadXSLT.setText("load XSLT file");
+    btnLoadXSLT.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLoadXSLTActionPerformed(evt);
+      }
+    });
+
+    btnInsertNamespaces.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    btnInsertNamespaces.setText("insert namespaces");
+    btnInsertNamespaces.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnInsertNamespacesActionPerformed(evt);
+      }
+    });
+
+    btnFormatXSLT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    btnFormatXSLT.setText("format");
+    btnFormatXSLT.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnFormatXSLTActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+    jPanel5.setLayout(jPanel5Layout);
+    jPanel5Layout.setHorizontalGroup(
+      jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel5Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jLabel10)
+        .addGap(18, 18, 18)
+        .addComponent(btnLoadXSLT, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(btnFormatXSLT, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnInsertNamespaces, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+        .addComponent(jLabel11)
+        .addContainerGap())
+      .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+    );
+    jPanel5Layout.setVerticalGroup(
+      jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        .addGap(6, 6, 6)
+        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(btnLoadXSLT)
+          .addComponent(jLabel10)
+          .addComponent(jLabel11)
+          .addComponent(btnInsertNamespaces)
+          .addComponent(btnFormatXSLT))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    jTabbedPane1.addTab("XSLT", jPanel5);
+
+    javax.swing.GroupLayout jframeXPathLayout = new javax.swing.GroupLayout(jframeXPath.getContentPane());
+    jframeXPath.getContentPane().setLayout(jframeXPathLayout);
+    jframeXPathLayout.setHorizontalGroup(
+      jframeXPathLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jframeXPathLayout.createSequentialGroup()
+        .addComponent(jTabbedPane1)
+        .addContainerGap())
+    );
+    jframeXPathLayout.setVerticalGroup(
+      jframeXPathLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jframeXPathLayout.createSequentialGroup()
+        .addComponent(jTabbedPane1)
+        .addContainerGap())
+    );
+
+    desktopPane.add(jframeXPath);
+    jframeXPath.setBounds(960, 0, 800, 480);
+
+    jiframeConsole.setIconifiable(true);
+    jiframeConsole.setMaximizable(true);
+    jiframeConsole.setResizable(true);
+    jiframeConsole.setTitle("console");
+    jiframeConsole.setVisible(true);
+
+    txtErrorLog.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+    txtErrorLog.setForeground(new java.awt.Color(255, 51, 51));
+    jScrollPane13.setViewportView(txtErrorLog);
+
+    btnClearConsole.setText("clear");
+    btnClearConsole.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnClearConsoleActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout jiframeConsoleLayout = new javax.swing.GroupLayout(jiframeConsole.getContentPane());
+    jiframeConsole.getContentPane().setLayout(jiframeConsoleLayout);
+    jiframeConsoleLayout.setHorizontalGroup(
+      jiframeConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
+      .addGroup(jiframeConsoleLayout.createSequentialGroup()
+        .addGap(6, 6, 6)
+        .addComponent(btnClearConsole)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jiframeConsoleLayout.setVerticalGroup(
+      jiframeConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jiframeConsoleLayout.createSequentialGroup()
+        .addGap(6, 6, 6)
+        .addComponent(btnClearConsole)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    desktopPane.add(jiframeConsole);
+    jiframeConsole.setBounds(0, 630, 760, 150);
+
+    MainTools.setVisible(true);
+
+    jPanelSelectedItemDetails.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+    jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    jLabel5.setText("library name");
+
+    txtSectionName.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        txtSectionNameKeyReleased(evt);
+      }
+    });
+
+    jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    jLabel4.setText("expression  name");
+
+    txtXPathName.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        txtXPathNameKeyReleased(evt);
+      }
+    });
+
+    btnSaveEditedXPathItem.setText("save edits");
+    btnSaveEditedXPathItem.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnSaveEditedXPathItemActionPerformed(evt);
+      }
+    });
+
+    jeditorPaneSelectedXPath.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
+    jScrollPane7.setViewportView(jeditorPaneSelectedXPath);
+
+    btnRevertLibraryName.setText("revert");
+    btnRevertLibraryName.setEnabled(false);
+    btnRevertLibraryName.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRevertLibraryNameActionPerformed(evt);
+      }
+    });
+
+    btnRevertXPathItemName.setText("revert");
+    btnRevertXPathItemName.setEnabled(false);
+    btnRevertXPathItemName.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRevertXPathItemNameActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout jPanelSelectedItemDetailsLayout = new javax.swing.GroupLayout(jPanelSelectedItemDetails);
+    jPanelSelectedItemDetails.setLayout(jPanelSelectedItemDetailsLayout);
+    jPanelSelectedItemDetailsLayout.setHorizontalGroup(
+      jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+          .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
+            .addComponent(btnSaveEditedXPathItem)
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
+            .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        desktopPane.setLayout(null);
-
-        jframeSourceXML.setIconifiable(true);
-        jframeSourceXML.setMaximizable(true);
-        jframeSourceXML.setResizable(true);
-        jframeSourceXML.setTitle("source XML");
-        jframeSourceXML.setVisible(true);
-
-        jSplitPane1.setDividerLocation(400);
-
-        jtreeSourceXML.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jtreeSourceXML.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-                jtreeSourceXMLValueChanged(evt);
-            }
-        });
-        jScrollPane8.setViewportView(jtreeSourceXML);
-
-        jSplitPane1.setRightComponent(jScrollPane8);
-
-        jeditorPaneXMLText.setEditorKit(kit);
-        jeditorPaneXMLText.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jeditorPaneXMLText.setText("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<about>      \n   <instructions value=\"File...Open to choose file containing XML (file-types are not filtered) Alternatively, paste your XML in the text-pane on the 'full XML' tab of the 'source XML' main-window\"/>      \n   <XPath>           \n      <item value=\"type a valid XPath expression in the XPath tab (see Real-time XPath and XSLT frame).\"/>           \n      <item value=\"have the 'auto?' box in the checked state to see XPath results as you type.\"/>           \n      <item value=\"Sometimes it's not helpful to have 'auto?' turned on because with each error due to partial  XPath-expressions you lose sight of any results thus far.\"/>           \n      <library>                \n         <item value=\"Often-used XPath expressions can be saved in the library - create a new library just by typing in a new name (not already used), name the expression, type the expression in the text-area below the 'save...' button, then click the 'save...' button iteself.\"/>                \n         <item value=\"To apply a library XPath expression to the XML in the 'full XML' window, just click on the library, then on the expression name. XPath results show in the XPath tab of the 'Real-time XPath and XSLT' frame.\"/>                \n         <item value=\"To see the XPath of a node, click on it in the XML-tree; to see the source-XML for the selected-node, view the 'selected node' tab.\"/>           \n      </library>      \n   </XPath>      \n   <XSLT>           \n      <item value=\"XSLT processes in real-time - operates on the XML that is in the text-pane of the 'full XML' tab. Either type in or paste XSLT into the XSLT pane, or load XSLT from a file. If any XSLT expressions use namespaces (other than 'xsl'), those namespaces need to be declared in the XSLT to prevent errors. To discover and insert the namespaces, click an appropriate location in the XSLT 'xsl:stylesheet' element to locate the cursor there, then click 'insert namespaces' button.\"/>           \n      <item value=\"'format' cleans up the XSLT format, but will fail if the XSLT is not well-formed.\"/>      \n   </XSLT> \n</about>");
-        jeditorPaneXMLText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jeditorPaneXMLTextKeyReleased(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jeditorPaneXMLText);
-
-        jTabbedPane3.addTab("all", jScrollPane1);
-
-        jeditorPaneSelectedNode.setEditorKit(new XMLEditorKit());
-        jeditorPaneSelectedNode.setEditable(false);
-        jeditorPaneSelectedNode.setEditorKit(kit);
-        jeditorPaneSelectedNode.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
-        jScrollPane11.setViewportView(jeditorPaneSelectedNode);
-
-        jTabbedPane3.addTab("selected", jScrollPane11);
-
-        jSplitPane1.setLeftComponent(jTabbedPane3);
-
-        txtSelectedNodeXPath.setEditable(false);
-        txtSelectedNodeXPath.setBackground(new java.awt.Color(238, 238, 238));
-        txtSelectedNodeXPath.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("XPath");
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        txtTreeSearch.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-
-        btnTreeSearch.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnTreeSearch.setText("search");
-        btnTreeSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTreeSearchActionPerformed(evt);
-            }
-        });
-
-        cbFullStringMatch.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cbFullStringMatch.setText("whole string?");
-
-        grpChildrenOrSiblings.add(radioChildren);
-        radioChildren.setSelected(true);
-        radioChildren.setText("children?");
-
-        grpChildrenOrSiblings.add(radioSiblings);
-        radioSiblings.setText("siblings?");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtTreeSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTreeSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbFullStringMatch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radioChildren)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radioSiblings)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTreeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTreeSearch)
-                    .addComponent(cbFullStringMatch)
-                    .addComponent(radioChildren)
-                    .addComponent(radioSiblings))
-                .addGap(6, 6, 6))
-        );
-
-        btnProcessXMLEdits.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnProcessXMLEdits.setText("process changed XML");
-        btnProcessXMLEdits.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcessXMLEditsActionPerformed(evt);
-            }
-        });
-
-        cbRealtimeXML.setText("real-time XML processing");
-
-        btnCleanNamespaces.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnCleanNamespaces.setText("clean namespaces");
-        btnCleanNamespaces.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnCleanNamespacesMouseReleased(evt);
-            }
-        });
-
-        cbUseDefaultNameSpaceName.setText("use default NS name in XPath?");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSelectedNodeXPath))
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(btnProcessXMLEdits)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCleanNamespaces)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbRealtimeXML)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbUseDefaultNameSpaceName)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(3, 3, 3))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSelectedNodeXPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProcessXMLEdits)
-                    .addComponent(cbRealtimeXML)
-                    .addComponent(btnCleanNamespaces)
-                    .addComponent(cbUseDefaultNameSpaceName))
-                .addGap(6, 6, 6)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
-                .addGap(3, 3, 3))
-        );
-
-        javax.swing.GroupLayout jframeSourceXMLLayout = new javax.swing.GroupLayout(jframeSourceXML.getContentPane());
-        jframeSourceXML.getContentPane().setLayout(jframeSourceXMLLayout);
-        jframeSourceXMLLayout.setHorizontalGroup(
-            jframeSourceXMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jframeSourceXMLLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jframeSourceXMLLayout.setVerticalGroup(
-            jframeSourceXMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jframeSourceXMLLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        desktopPane.add(jframeSourceXML);
-        jframeSourceXML.setBounds(0, 0, 950, 580);
-
-        jframeXPath.setIconifiable(true);
-        jframeXPath.setMaximizable(true);
-        jframeXPath.setResizable(true);
-        jframeXPath.setTitle("Real-time XPath and XSLT");
-        jframeXPath.setVisible(true);
-
-        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-
-        jeditorXPathResults.setEditable(false);
-        jeditorXPathResults.setEditorKit(kit);
-        jeditorXPathResults.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jScrollPane4.setViewportView(jeditorXPathResults);
-
-        jSplitPane2.setBottomComponent(jScrollPane4);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("XPath");
-
-        jeditorXPath.setColumns(20);
-        jeditorXPath.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jeditorXPath.setLineWrap(true);
-        jeditorXPath.setRows(5);
-        jeditorXPath.setText("/");
-        jeditorXPath.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jeditorXPathKeyReleased(evt);
-            }
-        });
-        jScrollPane5.setViewportView(jeditorXPath);
-
-        cbAutoXPath.setSelected(true);
-        cbAutoXPath.setText("auto?");
-        cbAutoXPath.setToolTipText("check this to get real-time XPath2.0 results"); // NOI18N
-        cbAutoXPath.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAutoXPathActionPerformed(evt);
-            }
-        });
-
-        btnXPath.setText("XPath");
-        btnXPath.setEnabled(false);
-        btnXPath.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXPathActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbAutoXPath)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel1))
-                    .addComponent(btnXPath))
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbAutoXPath)
-                .addGap(11, 11, 11)
-                .addComponent(btnXPath)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5))
-        );
-
-        jSplitPane2.setLeftComponent(jPanel1);
-
-        jTabbedPane1.addTab("XPath", jSplitPane2);
-
-        jSplitPane3.setDividerLocation(300);
-
-        jeditorXSLT.setEditorKit(kit);
-        jeditorXSLT.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
-        jeditorXSLT.setText("<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n<xsl:output method=\"xml\" indent=\"yes\"/>\n\n<xsl:template match=\"/\">\n  <xsl:copy-of select=\".\"/>\n</xsl:template>\n\n</xsl:stylesheet>");
-        jeditorXSLT.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jeditorXSLTKeyReleased(evt);
-            }
-        });
-        jScrollPane9.setViewportView(jeditorXSLT);
-
-        jSplitPane3.setLeftComponent(jScrollPane9);
-
-        jeditorTransformedXML.setEditable(false);
-        jeditorTransformedXML.setEditorKit(kit);
-        jeditorTransformedXML.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
-        jScrollPane10.setViewportView(jeditorTransformedXML);
-
-        jSplitPane3.setRightComponent(jScrollPane10);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel10.setText("XSLT");
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel11.setText("Transformed XML   ");
-
-        btnLoadXSLT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnLoadXSLT.setText("load XSLT file");
-        btnLoadXSLT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoadXSLTActionPerformed(evt);
-            }
-        });
-
-        btnInsertNamespaces.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnInsertNamespaces.setText("insert namespaces");
-        btnInsertNamespaces.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertNamespacesActionPerformed(evt);
-            }
-        });
-
-        btnFormatXSLT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnFormatXSLT.setText("format");
-        btnFormatXSLT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFormatXSLTActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(btnLoadXSLT, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnFormatXSLT, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnInsertNamespaces, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addContainerGap())
-            .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLoadXSLT)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(btnInsertNamespaces)
-                    .addComponent(btnFormatXSLT))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("XSLT", jPanel5);
-
-        javax.swing.GroupLayout jframeXPathLayout = new javax.swing.GroupLayout(jframeXPath.getContentPane());
-        jframeXPath.getContentPane().setLayout(jframeXPathLayout);
-        jframeXPathLayout.setHorizontalGroup(
-            jframeXPathLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jframeXPathLayout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
-        );
-        jframeXPathLayout.setVerticalGroup(
-            jframeXPathLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jframeXPathLayout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
-        );
-
-        desktopPane.add(jframeXPath);
-        jframeXPath.setBounds(960, 0, 800, 480);
-
-        jiframeConsole.setIconifiable(true);
-        jiframeConsole.setMaximizable(true);
-        jiframeConsole.setResizable(true);
-        jiframeConsole.setTitle("console");
-        jiframeConsole.setVisible(true);
-
-        txtErrorLog.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        txtErrorLog.setForeground(new java.awt.Color(255, 51, 51));
-        jScrollPane13.setViewportView(txtErrorLog);
-
-        btnClearConsole.setText("clear");
-        btnClearConsole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearConsoleActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jiframeConsoleLayout = new javax.swing.GroupLayout(jiframeConsole.getContentPane());
-        jiframeConsole.getContentPane().setLayout(jiframeConsoleLayout);
-        jiframeConsoleLayout.setHorizontalGroup(
-            jiframeConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
-            .addGroup(jiframeConsoleLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(btnClearConsole)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jiframeConsoleLayout.setVerticalGroup(
-            jiframeConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jiframeConsoleLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(btnClearConsole)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        desktopPane.add(jiframeConsole);
-        jiframeConsole.setBounds(0, 630, 760, 150);
-
-        MainTools.setVisible(true);
-
-        jPanelSelectedItemDetails.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("library name");
-
-        txtSectionName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSectionNameKeyReleased(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("expression  name");
-
-        txtXPathName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtXPathNameKeyReleased(evt);
-            }
-        });
-
-        btnSaveEditedXPathItem.setText("save edits");
-        btnSaveEditedXPathItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveEditedXPathItemActionPerformed(evt);
-            }
-        });
-
-        jeditorPaneSelectedXPath.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
-        jScrollPane7.setViewportView(jeditorPaneSelectedXPath);
-
-        btnRevertLibraryName.setText("revert");
-        btnRevertLibraryName.setEnabled(false);
-        btnRevertLibraryName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRevertLibraryNameActionPerformed(evt);
-            }
-        });
-
-        btnRevertXPathItemName.setText("revert");
-        btnRevertXPathItemName.setEnabled(false);
-        btnRevertXPathItemName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRevertXPathItemNameActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelSelectedItemDetailsLayout = new javax.swing.GroupLayout(jPanelSelectedItemDetails);
-        jPanelSelectedItemDetails.setLayout(jPanelSelectedItemDetailsLayout);
-        jPanelSelectedItemDetailsLayout.setHorizontalGroup(
-            jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
-                        .addComponent(btnSaveEditedXPathItem)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
-                        .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtXPathName))
-                            .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtSectionName)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRevertLibraryName, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRevertXPathItemName, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
-        );
-        jPanelSelectedItemDetailsLayout.setVerticalGroup(
-            jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSectionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(btnRevertLibraryName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtXPathName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(btnRevertXPathItemName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSaveEditedXPathItem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7)
-                .addContainerGap())
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("library name");
-
-        lstXPathSections.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstXPathSectionsValueChanged(evt);
-            }
-        });
-        jScrollPane3.setViewportView(lstXPathSections);
-
-        btnDeleteSection.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnDeleteSection.setText("delete selected");
-        btnDeleteSection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteSectionActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(btnDeleteSection, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeleteSection)
-                .addContainerGap())
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setText("  xpath expressions in library");
-
-        lstXPaths.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lstXPaths.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstXPathsValueChanged(evt);
-            }
-        });
-        jScrollPane6.setViewportView(lstXPaths);
-
-        btnDeleteXPathItem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnDeleteXPathItem.setText("delete selected");
-        btnDeleteXPathItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteXPathItemActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 27, Short.MAX_VALUE))
-                    .addComponent(btnDeleteXPathItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeleteXPathItem)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelSelectedItemDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelSelectedItemDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane2.addTab("XPath", jPanel9);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel7.setText("  library name");
-
-        lstXSLTLibrary.setModel(new DefaultListModel<XSLTLibrarySection>());
-        lstXSLTLibrary.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstXSLTLibraryValueChanged(evt);
-            }
-        });
-        jScrollPane12.setViewportView(lstXSLTLibrary);
-
-        btnDeleteXSLTLibrary.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnDeleteXSLTLibrary.setText("delete selected");
-        btnDeleteXSLTLibrary.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteXSLTLibraryActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(139, 139, 139))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(btnDeleteXSLTLibrary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeleteXSLTLibrary)
-                .addGap(6, 6, 6))
-        );
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel9.setText("  XSLT in library");
-
-        lstXSLTItems.setModel(new DefaultListModel<com.pa.xpath.data.XSLTItem>());
-        lstXSLTItems.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstXSLTItemsValueChanged(evt);
-            }
-        });
-        jScrollPane14.setViewportView(lstXSLTItems);
-
-        btnDeleteXSLTItem.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnDeleteXSLTItem.setText("delete selected");
-        btnDeleteXSLTItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteXSLTItemActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnDeleteXSLTItem, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeleteXSLTItem)
-                .addGap(6, 6, 6))
-        );
-
-        jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel12.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel12.setText("library name");
-
-        txtXSLTSectionName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtXSLTSectionNameKeyReleased(evt);
-            }
-        });
-
-        btnRevertXSLTLibraryName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnRevertXSLTLibraryName.setText("revert");
-        btnRevertXSLTLibraryName.setEnabled(false);
-
-        jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel13.setText("XSLT name");
-
-        txtXSLTName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtXSLTNameKeyReleased(evt);
-            }
-        });
-
-        btnSaveXSLTEdits.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnSaveXSLTEdits.setText("save edits");
-        btnSaveXSLTEdits.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveXSLTEditsActionPerformed(evt);
-            }
-        });
-
-        btnRevertXSLTItemName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnRevertXSLTItemName.setText("revert");
-        btnRevertXSLTItemName.setEnabled(false);
-
-        jLabel14.setText("use XSLT window  to view and edit XSLT");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel14))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSaveXSLTEdits)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel10Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtXSLTSectionName, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel10Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtXSLTName)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRevertXSLTItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRevertXSLTLibraryName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtXSLTSectionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRevertXSLTLibraryName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(txtXSLTName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRevertXSLTItemName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSaveXSLTEdits)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtXPathName))
+              .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
+                .addComponent(txtSectionName)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(btnRevertLibraryName, javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(btnRevertXPathItemName, javax.swing.GroupLayout.Alignment.TRAILING))))
+        .addContainerGap())
+    );
+    jPanelSelectedItemDetailsLayout.setVerticalGroup(
+      jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanelSelectedItemDetailsLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(txtSectionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel5)
+          .addComponent(btnRevertLibraryName))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanelSelectedItemDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(txtXPathName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel4)
+          .addComponent(btnRevertXPathItemName))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnSaveEditedXPathItem)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane7)
+        .addContainerGap())
+    );
 
-        jTabbedPane2.addTab("XSLT", jPanel11);
+    jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout MainToolsLayout = new javax.swing.GroupLayout(MainTools.getContentPane());
-        MainTools.getContentPane().setLayout(MainToolsLayout);
-        MainToolsLayout.setHorizontalGroup(
-            MainToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainToolsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2)
-                .addContainerGap())
-        );
-        MainToolsLayout.setVerticalGroup(
-            MainToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainToolsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2))
-        );
+    jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    jLabel2.setText("library name");
 
-        desktopPane.add(MainTools);
-        MainTools.setBounds(750, 490, 910, 360);
+    lstXPathSections.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+      public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        lstXPathSectionsValueChanged(evt);
+      }
+    });
+    jScrollPane3.setViewportView(lstXPathSections);
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("File");
+    btnDeleteSection.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    btnDeleteSection.setText("delete selected");
+    btnDeleteSection.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDeleteSectionActionPerformed(evt);
+      }
+    });
 
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Open XML");
-        openMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                openMenuItemMouseClicked(evt);
-            }
-        });
-        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(openMenuItem);
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+            .addGap(28, 28, 28)
+            .addComponent(jLabel2)
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+              .addComponent(btnDeleteSection, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
+        .addContainerGap())
+    );
+    jPanel2Layout.setVerticalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel2Layout.createSequentialGroup()
+        .addGap(6, 6, 6)
+        .addComponent(jLabel2)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnDeleteSection)
+        .addContainerGap())
+    );
 
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(exitMenuItem);
+    jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        menuBar.add(fileMenu);
+    jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    jLabel3.setText("  xpath expressions in library");
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Help");
+    lstXPaths.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    lstXPaths.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+      public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        lstXPathsValueChanged(evt);
+      }
+    });
+    jScrollPane6.setViewportView(lstXPaths);
 
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItemActionPerformed(evt);
-            }
-        });
-        helpMenu.add(aboutMenuItem);
+    btnDeleteXPathItem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    btnDeleteXPathItem.setText("delete selected");
+    btnDeleteXPathItem.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDeleteXPathItemActionPerformed(evt);
+      }
+    });
 
-        menuBar.add(helpMenu);
+    javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+    jPanel3.setLayout(jPanel3Layout);
+    jPanel3Layout.setHorizontalGroup(
+      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel3Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+          .addGroup(jPanel3Layout.createSequentialGroup()
+            .addComponent(jLabel3)
+            .addGap(0, 27, Short.MAX_VALUE))
+          .addComponent(btnDeleteXPathItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap())
+    );
+    jPanel3Layout.setVerticalGroup(
+      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel3Layout.createSequentialGroup()
+        .addGap(6, 6, 6)
+        .addComponent(jLabel3)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnDeleteXPathItem)
+        .addContainerGap())
+    );
 
-        setJMenuBar(menuBar);
+    javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+    jPanel9.setLayout(jPanel9Layout);
+    jPanel9Layout.setHorizontalGroup(
+      jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel9Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jPanelSelectedItemDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    jPanel9Layout.setVerticalGroup(
+      jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel9Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jPanelSelectedItemDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+    );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1602, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+    jTabbedPane2.addTab("XPath", jPanel9);
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+    jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+    jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    jLabel7.setText("  library name");
+
+    lstXSLTLibrary.setModel(new DefaultListModel<XSLTLibrarySection>());
+    lstXSLTLibrary.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+      public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        lstXSLTLibraryValueChanged(evt);
+      }
+    });
+    jScrollPane12.setViewportView(lstXSLTLibrary);
+
+    btnDeleteXSLTLibrary.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    btnDeleteXSLTLibrary.setText("delete selected");
+    btnDeleteXSLTLibrary.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDeleteXSLTLibraryActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+    jPanel4.setLayout(jPanel4Layout);
+    jPanel4Layout.setHorizontalGroup(
+      jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel4Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel4Layout.createSequentialGroup()
+            .addComponent(jLabel7)
+            .addGap(139, 139, 139))
+          .addGroup(jPanel4Layout.createSequentialGroup()
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+            .addContainerGap())
+          .addComponent(btnDeleteXSLTLibrary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+    );
+    jPanel4Layout.setVerticalGroup(
+      jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel4Layout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jLabel7)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnDeleteXSLTLibrary)
+        .addGap(6, 6, 6))
+    );
+
+    jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+    jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    jLabel9.setText("  XSLT in library");
+
+    lstXSLTItems.setModel(new DefaultListModel<com.pa.xpath.data.XSLTItem>());
+    lstXSLTItems.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+      public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        lstXSLTItemsValueChanged(evt);
+      }
+    });
+    jScrollPane14.setViewportView(lstXSLTItems);
+
+    btnDeleteXSLTItem.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    btnDeleteXSLTItem.setText("delete selected");
+    btnDeleteXSLTItem.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDeleteXSLTItemActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+    jPanel7.setLayout(jPanel7Layout);
+    jPanel7Layout.setHorizontalGroup(
+      jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel7Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+          .addGroup(jPanel7Layout.createSequentialGroup()
+            .addComponent(jLabel9)
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addComponent(btnDeleteXSLTItem, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
+        .addContainerGap())
+    );
+    jPanel7Layout.setVerticalGroup(
+      jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel7Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jLabel9)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnDeleteXSLTItem)
+        .addGap(6, 6, 6))
+    );
+
+    jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+    jLabel12.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    jLabel12.setText("library name");
+
+    txtXSLTSectionName.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        txtXSLTSectionNameKeyReleased(evt);
+      }
+    });
+
+    btnRevertXSLTLibraryName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    btnRevertXSLTLibraryName.setText("revert");
+    btnRevertXSLTLibraryName.setEnabled(false);
+
+    jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    jLabel13.setText("XSLT name");
+
+    txtXSLTName.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        txtXSLTNameKeyReleased(evt);
+      }
+    });
+
+    btnSaveXSLTEdits.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    btnSaveXSLTEdits.setText("save edits");
+    btnSaveXSLTEdits.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnSaveXSLTEditsActionPerformed(evt);
+      }
+    });
+
+    btnRevertXSLTItemName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+    btnRevertXSLTItemName.setText("revert");
+    btnRevertXSLTItemName.setEnabled(false);
+
+    jLabel14.setText("use XSLT window  to view and edit XSLT");
+
+    javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+    jPanel10.setLayout(jPanel10Layout);
+    jPanel10Layout.setHorizontalGroup(
+      jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel10Layout.createSequentialGroup()
+        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel10Layout.createSequentialGroup()
+            .addGap(21, 21, 21)
+            .addComponent(jLabel14))
+          .addGroup(jPanel10Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(btnSaveXSLTEdits)
+              .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                  .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addComponent(jLabel12)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtXSLTSectionName, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addComponent(jLabel13)
+                    .addGap(18, 18, 18)
+                    .addComponent(txtXSLTName)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(btnRevertXSLTItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(btnRevertXSLTLibraryName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jPanel10Layout.setVerticalGroup(
+      jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel10Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel12)
+          .addComponent(txtXSLTSectionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(btnRevertXSLTLibraryName))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel13)
+          .addComponent(txtXSLTName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(btnRevertXSLTItemName))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnSaveXSLTEdits)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jLabel14)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+    jPanel11.setLayout(jPanel11Layout);
+    jPanel11Layout.setHorizontalGroup(
+      jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel11Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap())
+    );
+    jPanel11Layout.setVerticalGroup(
+      jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel11Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap())
+    );
+
+    jTabbedPane2.addTab("XSLT", jPanel11);
+
+    javax.swing.GroupLayout MainToolsLayout = new javax.swing.GroupLayout(MainTools.getContentPane());
+    MainTools.getContentPane().setLayout(MainToolsLayout);
+    MainToolsLayout.setHorizontalGroup(
+      MainToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(MainToolsLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jTabbedPane2)
+        .addContainerGap())
+    );
+    MainToolsLayout.setVerticalGroup(
+      MainToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(MainToolsLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jTabbedPane2))
+    );
+
+    desktopPane.add(MainTools);
+    MainTools.setBounds(750, 490, 910, 360);
+
+    fileMenu.setMnemonic('f');
+    fileMenu.setText("File");
+
+    openMenuItem.setMnemonic('o');
+    openMenuItem.setText("Open XML");
+    openMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        openMenuItemMouseClicked(evt);
+      }
+    });
+    openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        openMenuItemActionPerformed(evt);
+      }
+    });
+    fileMenu.add(openMenuItem);
+
+    exitMenuItem.setMnemonic('x');
+    exitMenuItem.setText("Exit");
+    exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitMenuItemActionPerformed(evt);
+      }
+    });
+    fileMenu.add(exitMenuItem);
+
+    menuBar.add(fileMenu);
+
+    helpMenu.setMnemonic('h');
+    helpMenu.setText("Help");
+
+    aboutMenuItem.setMnemonic('a');
+    aboutMenuItem.setText("About");
+    aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        aboutMenuItemActionPerformed(evt);
+      }
+    });
+    helpMenu.add(aboutMenuItem);
+
+    menuBar.add(helpMenu);
+
+    setJMenuBar(menuBar);
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(layout.createSequentialGroup()
+        .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1602, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    layout.setVerticalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(layout.createSequentialGroup()
+        .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    pack();
+  }// </editor-fold>//GEN-END:initComponents
 
   private void jeditorXPathKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jeditorXPathKeyReleased
 		if (!autoXPath) {
@@ -2066,112 +2073,112 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 		});
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JInternalFrame MainTools;
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JButton btnCleanNamespaces;
-    private javax.swing.JButton btnClearConsole;
-    private javax.swing.JButton btnDeleteSection;
-    private javax.swing.JButton btnDeleteXPathItem;
-    private javax.swing.JButton btnDeleteXSLTItem;
-    private javax.swing.JButton btnDeleteXSLTLibrary;
-    private javax.swing.JButton btnFormatXSLT;
-    private javax.swing.JButton btnInsertNamespaces;
-    private javax.swing.JButton btnLoadXSLT;
-    private javax.swing.JButton btnProcessXMLEdits;
-    private javax.swing.JButton btnRevertLibraryName;
-    private javax.swing.JButton btnRevertXPathItemName;
-    private javax.swing.JButton btnRevertXSLTItemName;
-    private javax.swing.JButton btnRevertXSLTLibraryName;
-    private javax.swing.JButton btnSaveEditedXPathItem;
-    private javax.swing.JButton btnSaveXSLTEdits;
-    private javax.swing.JButton btnTreeSearch;
-    private javax.swing.JButton btnXPath;
-    private javax.swing.JCheckBox cbAutoXPath;
-    private javax.swing.JCheckBox cbFullStringMatch;
-    private javax.swing.JCheckBox cbRealtimeXML;
-    private javax.swing.JCheckBox cbUseDefaultNameSpaceName;
-    private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.ButtonGroup grpChildrenOrSiblings;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JEditorPane jEditorPane2;
-    private javax.swing.JFrame jFrameAbout;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JPanel jPanelSelectedItemDetails;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane13;
-    private javax.swing.JScrollPane jScrollPane14;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JSplitPane jSplitPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JEditorPane jeditorPaneSelectedNode;
-    private javax.swing.JEditorPane jeditorPaneSelectedXPath;
-    private javax.swing.JEditorPane jeditorPaneXMLText;
-    private javax.swing.JEditorPane jeditorTransformedXML;
-    private javax.swing.JTextArea jeditorXPath;
-    private javax.swing.JEditorPane jeditorXPathResults;
-    private javax.swing.JEditorPane jeditorXSLT;
-    private javax.swing.JInternalFrame jframeSourceXML;
-    private javax.swing.JInternalFrame jframeXPath;
-    private javax.swing.JInternalFrame jiframeConsole;
-    private javax.swing.JTree jtreeSourceXML;
-    private javax.swing.JList lstXPathSections;
-    private javax.swing.JList lstXPaths;
-    private javax.swing.JList<com.pa.xpath.data.XSLTItem> lstXSLTItems;
-    private javax.swing.JList<XSLTLibrarySection> lstXSLTLibrary;
-    private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JRadioButton radioChildren;
-    private javax.swing.JRadioButton radioSiblings;
-    private javax.swing.JEditorPane txtErrorLog;
-    private javax.swing.JTextField txtSectionName;
-    private javax.swing.JTextField txtSelectedNodeXPath;
-    private javax.swing.JTextField txtTreeSearch;
-    private javax.swing.JTextField txtXPathName;
-    private javax.swing.JTextField txtXSLTName;
-    private javax.swing.JTextField txtXSLTSectionName;
-    // End of variables declaration//GEN-END:variables
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JInternalFrame MainTools;
+  private javax.swing.JMenuItem aboutMenuItem;
+  private javax.swing.JButton btnCleanNamespaces;
+  private javax.swing.JButton btnClearConsole;
+  private javax.swing.JButton btnDeleteSection;
+  private javax.swing.JButton btnDeleteXPathItem;
+  private javax.swing.JButton btnDeleteXSLTItem;
+  private javax.swing.JButton btnDeleteXSLTLibrary;
+  private javax.swing.JButton btnFormatXSLT;
+  private javax.swing.JButton btnInsertNamespaces;
+  private javax.swing.JButton btnLoadXSLT;
+  private javax.swing.JButton btnProcessXMLEdits;
+  private javax.swing.JButton btnRevertLibraryName;
+  private javax.swing.JButton btnRevertXPathItemName;
+  private javax.swing.JButton btnRevertXSLTItemName;
+  private javax.swing.JButton btnRevertXSLTLibraryName;
+  private javax.swing.JButton btnSaveEditedXPathItem;
+  private javax.swing.JButton btnSaveXSLTEdits;
+  private javax.swing.JButton btnTreeSearch;
+  private javax.swing.JButton btnXPath;
+  private javax.swing.JCheckBox cbAutoXPath;
+  private javax.swing.JCheckBox cbFullStringMatch;
+  private javax.swing.JCheckBox cbRealtimeXML;
+  private javax.swing.JCheckBox cbUseDefaultNameSpaceName;
+  private javax.swing.JDesktopPane desktopPane;
+  private javax.swing.JMenuItem exitMenuItem;
+  private javax.swing.JMenu fileMenu;
+  private javax.swing.ButtonGroup grpChildrenOrSiblings;
+  private javax.swing.JMenu helpMenu;
+  private javax.swing.JButton jButton1;
+  private javax.swing.JEditorPane jEditorPane2;
+  private javax.swing.JFrame jFrameAbout;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel10;
+  private javax.swing.JLabel jLabel11;
+  private javax.swing.JLabel jLabel12;
+  private javax.swing.JLabel jLabel13;
+  private javax.swing.JLabel jLabel14;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
+  private javax.swing.JLabel jLabel6;
+  private javax.swing.JLabel jLabel7;
+  private javax.swing.JLabel jLabel8;
+  private javax.swing.JLabel jLabel9;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel10;
+  private javax.swing.JPanel jPanel11;
+  private javax.swing.JPanel jPanel2;
+  private javax.swing.JPanel jPanel3;
+  private javax.swing.JPanel jPanel4;
+  private javax.swing.JPanel jPanel5;
+  private javax.swing.JPanel jPanel6;
+  private javax.swing.JPanel jPanel7;
+  private javax.swing.JPanel jPanel8;
+  private javax.swing.JPanel jPanel9;
+  private javax.swing.JPanel jPanelSelectedItemDetails;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JScrollPane jScrollPane10;
+  private javax.swing.JScrollPane jScrollPane11;
+  private javax.swing.JScrollPane jScrollPane12;
+  private javax.swing.JScrollPane jScrollPane13;
+  private javax.swing.JScrollPane jScrollPane14;
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JScrollPane jScrollPane3;
+  private javax.swing.JScrollPane jScrollPane4;
+  private javax.swing.JScrollPane jScrollPane5;
+  private javax.swing.JScrollPane jScrollPane6;
+  private javax.swing.JScrollPane jScrollPane7;
+  private javax.swing.JScrollPane jScrollPane8;
+  private javax.swing.JScrollPane jScrollPane9;
+  private javax.swing.JSplitPane jSplitPane1;
+  private javax.swing.JSplitPane jSplitPane2;
+  private javax.swing.JSplitPane jSplitPane3;
+  private javax.swing.JTabbedPane jTabbedPane1;
+  private javax.swing.JTabbedPane jTabbedPane2;
+  private javax.swing.JTabbedPane jTabbedPane3;
+  private javax.swing.JEditorPane jeditorPaneSelectedNode;
+  private javax.swing.JEditorPane jeditorPaneSelectedXPath;
+  private javax.swing.JEditorPane jeditorPaneXMLText;
+  private javax.swing.JEditorPane jeditorTransformedXML;
+  private javax.swing.JTextArea jeditorXPath;
+  private javax.swing.JEditorPane jeditorXPathResults;
+  private javax.swing.JEditorPane jeditorXSLT;
+  private javax.swing.JInternalFrame jframeSourceXML;
+  private javax.swing.JInternalFrame jframeXPath;
+  private javax.swing.JInternalFrame jiframeConsole;
+  private javax.swing.JTree jtreeSourceXML;
+  private javax.swing.JList lstXPathSections;
+  private javax.swing.JList lstXPaths;
+  private javax.swing.JList<com.pa.xpath.data.XSLTItem> lstXSLTItems;
+  private javax.swing.JList<XSLTLibrarySection> lstXSLTLibrary;
+  private javax.swing.JMenuBar menuBar;
+  private javax.swing.JMenuItem openMenuItem;
+  private javax.swing.JRadioButton radioChildren;
+  private javax.swing.JRadioButton radioSiblings;
+  private javax.swing.JEditorPane txtErrorLog;
+  private javax.swing.JTextField txtSectionName;
+  private javax.swing.JTextField txtSelectedNodeXPath;
+  private javax.swing.JTextField txtTreeSearch;
+  private javax.swing.JTextField txtXPathName;
+  private javax.swing.JTextField txtXSLTName;
+  private javax.swing.JTextField txtXSLTSectionName;
+  // End of variables declaration//GEN-END:variables
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
@@ -2194,5 +2201,38 @@ public class XMLTool extends JFrame implements ItemListener, ActionListener {
 			searchTree();
 		}
 	}
+        private void enableUndo(JTextComponent jtextComponent) {
+            UndoManager manager = new UndoManager();
+            Document document = jtextComponent.getDocument();
+            document.addUndoableEditListener(event -> manager.addEdit(event.getEdit()));
 
+            jtextComponent.getActionMap().put("undo", new AbstractAction("undo") {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    try {
+                        if (manager.canUndo()) {
+                            manager.undo();
+                        }
+                    } catch (CannotUndoException ignore) {
+                        reportError("No more undos", txtErrorLog);
+                    }
+                }
+            });
+        KeyStroke undoKeyStroke = getUndoKeyStroke();
+            if (undoKeyStroke != null) {
+                jtextComponent.getInputMap().put(undoKeyStroke, "undo");
+            }
+        }
+
+        private KeyStroke getUndoKeyStroke() {
+            String osName = System.getProperty("os.name").toLowerCase();
+            if (osName.contains("mac")) {
+                return KeyStroke.getKeyStroke("meta Z");
+            } else if (osName.contains("win")) {
+                return KeyStroke.getKeyStroke("control Z");
+            } else {
+                reportError("Undo in your OS is not supported. You are on your own.", txtErrorLog);
+                return null;
+            }
+        }
 }
